@@ -1,11 +1,11 @@
 vimrc
 gvimrc
-vim/templates
+vim/templates/
 vim/bundle/nerdtree/nerdtree_plugin/nerdtree_open.vim
 zshrc
 gitconfig
 hgrc
 tmux.conf
 pentadactylrc
-pentadactyl/colors
-pentadactyl/plugins
+pentadactyl/colors/
+pentadactyl/plugins/

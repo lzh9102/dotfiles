@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# files to backup (filename without the dot)
-# make sure that the filename doesn't contain a trailing slash (/) even if
-# it is a directory
-# example: vimrc
-
 FILES=`cat FILES`
 
 require() {
@@ -72,6 +67,7 @@ create_symlink() {
 }
 
 for file in $FILES; do
+	file=`echo $file | sed 's/\/$//g'` # remove trailing slash
 	backup_original_dotfile $file
 	create_symlink $file
 	run_post_setup $file
