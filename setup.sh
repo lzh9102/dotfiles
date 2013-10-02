@@ -1,7 +1,22 @@
 #!/bin/bash
 
-FILES=`cat FILES`
+# configuration files without the leading dot
+# example: vimrc
+FILES="""
+vimrc
+gvimrc
+vim/templates/
+vim/bundle/nerdtree/nerdtree_plugin/nerdtree_open.vim
+zshrc
+gitconfig
+hgrc
+tmux.conf
+pentadactylrc
+pentadactyl/colors/
+pentadactyl/plugins/
+"""
 
+# check for dependencies
 require() {
 	type $1 >& /dev/null
 	if [ $? -ne 0 ]; then
@@ -9,10 +24,10 @@ require() {
 		exit 1
 	fi
 }
-
 require vim
 require git
 
+# post-setup functions
 __post_setup_vimrc() {
 	mkdir -p ~/.vimswp
 	mkdir -p ~/.vim/bundle
