@@ -1,0 +1,58 @@
+"1.0
+" pentadactylrc
+" Che-Huai Lin <lzh9102@gmail.com>
+
+loadplugins '\.(js|penta)$'
+group user
+
+" vim: set ft=pentadactyl:
+
+" speedup up/down navigation keys
+nmap -builtin j 6j
+nmap -builtin k 6k
+
+" next/prev tab in insert mode
+imap <C-n> <ESC>:tabnext<CR>
+imap <C-p> <ESC>:tabprev<CR>
+
+" next/prev link patterns
+set nextpattern=\s*下(一|\ )?(頁|篇|页)\s*,^\b(n|N)ext\b,\\b(n|N)ext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b,次へ
+set previouspattern=\s*上(一|\ )?(頁|篇|页)\s*,^\b(p|P)rev|(p|P)revious\b,\\b(p|P)rev|(p|P)revious\\b,^<$,^(<<|«)$,^(<|«),(<|«)$,前へ
+
+" easier hint keys (Shift + RH Chars)
+set hintkeys='JKL:MOPIUH'
+
+" toggle highlight
+nmap <C-h> <ESC>:set hlfind!<CR>
+
+" noscript
+" toggle permission (expects <Enter>)
+nmap <A-s> <ESC>:set nss!=<A-Tab>
+" temp permission
+nmap <A-S-s> <ESC>:set nst!=<A-Tab>
+" objects
+nmap <A-c> <ESC>:set nso!=<A-Tab>
+" untrusted
+nmap <A-u> <ESC>:set nsu!=<A-Tab>
+
+" colors
+colorscheme modified-solarized-dark
+
+" unmap penta-session keys
+nunmap! -group plugin-penta-sessions
+
+" [stylish] toggle custom styles
+javascript <<EOF
+userContext.stylish_toggle_custom_styles = function() {
+	var prefs = Components.classes["@mozilla.org/preferences-service;1"]
+		.getService(Components.interfaces.nsIPrefBranch)
+		.prefHasUserValue("extensions.stylish.styleRegistrationEnabled");
+	if (prefs){
+		stylishOverlay.turnOnOff(true);
+	} else {
+		stylishOverlay.turnOnOff(false);
+	}
+}
+EOF
+
+nmap <C-A-s> :javascript stylish_toggle_custom_styles()<CR>

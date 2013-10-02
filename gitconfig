@@ -1,0 +1,17 @@
+[user]
+	name = Timothy Lin
+	email = lzh9102@gmail.com
+[merge]
+	tool = vimdiff
+[color]
+	ui = auto
+[push]
+	default = simple
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	di = diff
+[hub]
+	protocol = https

@@ -1,0 +1,15 @@
+[ui]
+username = Timothy Lin <lzh9102@gmail.com>
+editor = vim
+
+[extensions]
+progress =
+mq =
+color =
+
+[progress]
+delay = 1
+refresh = 0.1
+
+[diff]
+git = 1
