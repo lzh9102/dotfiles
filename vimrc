@@ -2,6 +2,8 @@
 " Che-Huai Lin <lzh9102@gmail.com>
 
 " Pre-settings {{{
+" allow utf-8 characters in vimrc
+scriptencoding utf-8
 " load python2 (python2 cannot be used after loading python3)
 if has('python')
 end
