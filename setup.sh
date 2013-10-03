@@ -29,15 +29,15 @@ require git
 
 # post-setup functions
 __post_setup_vimrc() {
-	mkdir -p ~/.vimswp
-	mkdir -p ~/.vim/bundle
-	git clone "git://github.com/gmarik/vundle.git" ~/.vim/bundle/vundle
+	mkdir -p ${HOME}/.vimswp
+	mkdir -p ${HOME}/.vim/bundle
+	git clone "git://github.com/gmarik/vundle.git" ${HOME}/.vim/bundle/vundle
 	vim -c 'BundleInstall' -c 'qa!'
 }
 
 ##############################
 
-BACKUP_DIR=~/dotfiles-old
+BACKUP_DIR=${HOME}/dotfiles-old
 REPO_DIR=$PWD/`dirname $0`
 
 run_cmd() {
@@ -64,7 +64,7 @@ run_post_setup() {
 backup_original_dotfile() {
 	# usage: backup_original_dotfile <filename-without-the-dot>
 	# example: backup_original_dotfile vimrc
-	local file=~/.$1
+	local file=${HOME}/.$1
 	if [ -e $file ]; then
 		mkdir -p $BACKUP_DIR/`dirname $1`
 		run_cmd cp -Hrp $file $BACKUP_DIR/`dirname $1`
@@ -75,10 +75,10 @@ backup_original_dotfile() {
 create_symlink() {
 	# usage: create_symlink <filename-without-the-dot>
 	# see backup_original_dotfile
-	local dest=~/.$1
+	local dest=${HOME}/.$1
 	mkdir -p `dirname $dest`
-	rm -f ~/.$1
-	run_cmd ln -vsf $REPO_DIR/$1 ~/.$1
+	rm -f ${HOME}/.$1
+	run_cmd ln -vsf $REPO_DIR/$1 ${HOME}/.$1
 }
 
 for file in $FILES; do
