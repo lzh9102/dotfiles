@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # configuration files without the leading dot
 # example: vimrc
@@ -18,7 +18,7 @@ pentadactyl/plugins/
 
 # check for dependencies
 require() {
-	type $1 >& /dev/null
+	type $1 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		echo "ERROR: $1 is required but not installed"
 		exit 1
@@ -49,7 +49,7 @@ run_cmd() {
 }
 
 check_cmd_exists() {
-	type $1 >& /dev/null
+	type $1 > /dev/null 2>&1
 }
 
 run_post_setup() {
