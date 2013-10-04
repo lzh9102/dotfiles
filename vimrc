@@ -302,6 +302,9 @@ nnoremap <C-c><C-b> :EasyBuffer<CR>
 " [plugin_vimux]
 nmap <C-c><C-e> :VimuxPromptCommand<CR>
 
+" update (write to disk if modified)
+nmap <C-c><C-u> :update<CR>
+
 " write as root
 " superceded by sudoedit plugin
 "function! WriteAsRoot()
