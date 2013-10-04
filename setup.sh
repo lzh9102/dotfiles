@@ -72,6 +72,12 @@ backup_original_dotfile() {
 	fi
 }
 
+dotfile_is_symlink() {
+	# usage: dotfile_is_symlink <filename-without-the-dot>
+	# example: dotfile_is_symlink vimrc
+	[ -L "${HOME}/.$1" ]
+}
+
 create_symlink() {
 	# usage: create_symlink <filename-without-the-dot>
 	# see backup_original_dotfile
@@ -83,7 +89,9 @@ create_symlink() {
 
 for file in $FILES; do
 	file=`echo $file | sed 's/\/$//g'` # remove trailing slash
-	backup_original_dotfile $file
+	if ! dotfile_is_symlink $file; then
+		backup_original_dotfile $file
+	fi
 	create_symlink $file
 	run_post_setup $file
 done
