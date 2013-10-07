@@ -13,5 +13,6 @@
 	st = status
 	br = branch
 	di = diff
+	dic = diff --cached
 [hub]
 	protocol = https
