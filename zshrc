@@ -45,4 +45,4 @@ command_not_found_handler() {
 }
 
 # system-specific settings
-[ -f ~/.zshrc-extra ] && source ~/.zshrc-extra
+[ -f ~/.zshrc-local ] && source ~/.zshrc-local
