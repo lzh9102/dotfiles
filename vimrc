@@ -133,6 +133,7 @@ set laststatus=2       " always display status bar
 set wildmenu           " command completion menu
 set wildmode=list:full " menu: match until the longest common prefix
 set display+=lastline  " show incomplete lines
+syntax on              " enable syntax highlighting
 
 " folding
 "set foldmethod=syntax
