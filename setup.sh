@@ -38,7 +38,6 @@ __post_setup_vimrc() {
 	else
 		echo "INFO: skip installation of vundle because it is already installed"
 	fi
-	vim -c 'BundleClean' -c 'qa!'
 	vim -c 'BundleInstall' -c 'qa!'
 }
 
