@@ -34,7 +34,8 @@ PROMPT=
 PROMPT+="%{$fg_bold[cyan]%}%n:%{$reset_color%}"
 PROMPT+="%{$fg_bold[green]%}%~%{$reset_color%}"
 PROMPT+="%(?.%{$fg_bold[cyan]%}.%{$fg_bold[red]%})>%{$reset_color%} "
-RPROMPT="%{$fg[yellow]%}(%*)%{$reset_color%}"
+RPROMPT="%(?..%{$fg_bold[red]%}[%?]%{$reset_color%})"
+RPROMPT+="%{$fg[yellow]%}(%*)%{$reset_color%}"
 # characters considered as part of a word
 WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
