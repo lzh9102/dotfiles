@@ -14,6 +14,7 @@ tmux.conf
 pentadactylrc
 pentadactyl/colors/
 pentadactyl/plugins/
+screenrc
 """
 
 # check for dependencies
