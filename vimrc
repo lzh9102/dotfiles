@@ -29,7 +29,9 @@ Bundle 'HyperList'
 Bundle 'vim-scripts/DoxyGen-Syntax'
 Bundle 'c9s/perlomni.vim'
 Bundle 'myhere/vim-nodejs-complete'
-Bundle 'Rip-Rip/clang_complete'
+if has('python') || has('python3')
+	Bundle 'Rip-Rip/clang_complete'
+endif
 Bundle 'xaizek/vim-inccomplete'
 Bundle 'digitaltoad/vim-jade'
 "Bundle 'xolox/vim-notes'
