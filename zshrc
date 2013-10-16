@@ -32,8 +32,8 @@ autoload -U colors && colors
 PROMPT=
 #PROMPT+="%(?..[%{$fg_bold[red]%}%?%{$reset_color%}])" # show error if exit status is non-zero
 PROMPT+="%{$fg_bold[cyan]%}%n%{$reset_color%}" # username
-PROMPT+="%{$fg_bold[gray]%}@%{$reset_color%}" # @
-PROMPT+="%{$fg_bold[blue]%}%m%{$reset_color%}" # hostname
+PROMPT+="%{$fg_bold[green]%}@%{$reset_color%}" # @
+PROMPT+="%{$fg_bold[magenta]%}%m%{$reset_color%}" # hostname
 PROMPT+="%{$fg_bold[cyan]%}:%{$reset_color%}" # :
 PROMPT+="%{$fg_bold[green]%}%~%{$reset_color%}" # working directory
 PROMPT+="%(?.%{$fg_bold[cyan]%}.%{$fg_bold[red]%})>%{$reset_color%} " # >
