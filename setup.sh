@@ -32,7 +32,13 @@ require git
 __post_setup_vimrc() {
 	mkdir -p ${HOME}/.vimswp
 	mkdir -p ${HOME}/.vim/bundle
-	git clone "git://github.com/gmarik/vundle.git" ${HOME}/.vim/bundle/vundle
+	local VUNDLE_DIR=${HOME}/.vim/bundle/vundle
+	if [ ! -d "$VUNDLE_DIR" ]; then
+		git clone "git://github.com/gmarik/vundle.git" "$VUNDLE_DIR"
+	else
+		echo "INFO: skip installation of vundle because it is already installed"
+	fi
+	vim -c 'BundleClean' -c 'qa!'
 	vim -c 'BundleInstall' -c 'qa!'
 }
 
