@@ -135,7 +135,7 @@ set foldmethod=marker  " fold by markers
 "colorscheme solarized
 " `distinguished` needs 256-color terminal
 if &t_Co == 256
-	colorscheme distinguished
+	silent! colorscheme distinguished
 else
 	" popup-menu color settings
 	highlight PmenuSel ctermbg=Green ctermfg=Black
