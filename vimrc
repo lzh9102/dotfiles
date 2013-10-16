@@ -50,8 +50,16 @@ Bundle 'surround.vim'
 "Bundle 'tpope/vim-surround'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'vim-scripts/closetag.vim'
-Bundle 'SirVer/ultisnips'
-"Bundle 'snipMate'
+
+" UltiSnips requires vim compiled with python
+if has('python') || has ('python3')
+	Bundle 'SirVer/ultisnips'
+	let snippet_plugin = 'ultisnips'
+else " use snipMate instead if vim is not compiled with python
+	Bundle 'snipMate'
+	let snippet_plugin = 'snipmate'
+endif
+
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
@@ -370,10 +378,13 @@ nnoremap <Leader>ff :FufFile!<CR>
 nnoremap <Leader>fb :FufBuffer!<CR>
 nnoremap <Leader>ft :FufTag!<CR>
 
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" Snippets
+if snippet_plugin == 'ultisnips'
+	" UltiSnips
+	let g:UltiSnipsExpandTrigger="<tab>"
+	let g:UltiSnipsJumpForwardTrigger="<tab>"
+	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+endif
 
 " ctrlp
 let g:ctrlp_map = '<c-c><c-p>'
