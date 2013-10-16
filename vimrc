@@ -203,9 +203,9 @@ vnoremap > >gv
 vnoremap < <gv
 
 " inserting date and time
-command Date execute 'normal a<C-r>=strftime("%Y-%m-%d")<CR><ESC>'
-command Time execute 'normal a<C-r>=strftime("%H:%M:%S")<CR><ESC>'
-command DateTime execute 'normal a<C-r>=strftime("%Y-%m-%d %H:%M:%S")<CR><ESC>'
+command! Date execute 'normal a<C-r>=strftime("%Y-%m-%d")<CR><ESC>'
+command! Time execute 'normal a<C-r>=strftime("%H:%M:%S")<CR><ESC>'
+command! DateTime execute 'normal a<C-r>=strftime("%Y-%m-%d %H:%M:%S")<CR><ESC>'
 
 " disable mouse scrolling completely {{{
 map <ScrollWheelUp> <nop>
