@@ -1,5 +1,8 @@
 # zsh runtime config
 # Che-Huai Lin <lzh9102@gmail.com>
+# This file contains generic zsh configurations. System-specific settings
+# should be written in `~/.zshrc-local`. Extra completion scripts should be
+# put in `~/.zsh/completion/`.
 
 # custom completion scripts
 fpath=(~/.zsh/completion $fpath)
