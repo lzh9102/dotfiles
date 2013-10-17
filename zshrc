@@ -30,6 +30,11 @@ zstyle ':completion:*' accept-exact false
 # killall completion
 zstyle ':completion:*:processes-names' command 'ps -e -o comm='
 
+# enable insertion of any arguments from previous commands
+autoload -Uz copy-earlier-word
+zle -N copy-earlier-word
+bindkey "m" copy-earlier-word
+
 # command line prompt
 autoload -U colors && colors
 PROMPT=
