@@ -59,5 +59,17 @@ command_not_found_handler() {
 	return 0
 }
 
+# alias
+# cd toward root {{{
+alias ..="cd .."                                # 1
+alias ...="cd ../.."                            # 2
+alias ....="cd ../../.."                        # 3
+alias .....="cd ../../../../"                   # 4
+alias ......="cd ../../../../../"               # 5
+alias .......="cd ../../../../../../"           # 6
+alias ........="cd ../../../../../../../"       # 7
+alias .........="cd ../../../../../../../../"   # 8
+# }}}
+
 # system-specific settings
 [ -f ~/.zshrc-local ] && source ~/.zshrc-local
