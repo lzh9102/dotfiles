@@ -26,6 +26,7 @@ require() {
 	fi
 }
 require git
+require vim
 
 # post-setup functions
 __post_setup_vimrc() {
