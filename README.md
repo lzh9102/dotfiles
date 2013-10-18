@@ -1,14 +1,7 @@
-lzh9102 dot files
+lzh9102's dot files
 =================
 
-These are the configuration files for common programs I use:
-
-- [vim](http://www.vim.org/)
-- [zsh](http://www.zsh.org/)
-- [pentadactyl](http://5digits.org/pentadactyl/)
-- [tmux](http://tmux.sourceforge.net/)
-- [git](http://git-scm.com/)
-- [mercurial](http://mercurial.selenic.com/)
+Configuration files for common programs I use.
 
 Setup
 -----
