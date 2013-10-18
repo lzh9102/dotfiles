@@ -25,7 +25,6 @@ require() {
 		exit 1
 	fi
 }
-require vim
 require git
 
 # post-setup functions
