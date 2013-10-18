@@ -41,18 +41,6 @@ __post_setup_vimrc() {
 	vim -c 'BundleInstall' -c 'qa!'
 }
 
-__post_setup_zshrc() {
-	local LOCAL_ZSHRC=${HOME}/.zshrc-local
-	if [ ! -f "$LOCAL_ZSHRC" ]; then
-		echo "# system-specific zsh config" > "$LOCAL_ZSHRC"
-		if [ $? -eq 0 ]; then
-			echo "INFO: created $LOCAL_ZSHRC"
-		else
-			echo "ERROR: failed to create $LOCAL_ZSHRC"
-		fi
-	fi
-}
-
 ##############################
 
 BACKUP_DIR=${HOME}/dotfiles-old
