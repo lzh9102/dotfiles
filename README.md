@@ -35,4 +35,5 @@ Features
 
 ### zsh
 - display current time in right prompt
+- source `~/.zshrc-local` at the end of `~/.zshrc` for system-specific settings
 - I am not using *oh-my-zsh*; you can add it if you like it.
