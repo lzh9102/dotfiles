@@ -42,8 +42,9 @@ __post_setup_vimrc() {
 
 ##############################
 
+cd "`dirname $0`"
 BACKUP_DIR=${HOME}/dotfiles-old
-REPO_DIR=$PWD/`dirname $0`
+REPO_DIR=$PWD
 
 run_cmd() {
 	"$@"
