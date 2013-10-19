@@ -274,6 +274,10 @@ set tags=./tags;,./TAGS;,tags,TAGS
 " see http://www.guninski.com/vim1.html
 set modelines=0
 
+" file encoding
+set fileencodings=utf-8,ucs-bom,big5,gbk,latin1
+set fileencoding=utf-8
+
 "    File & Buffer End }}}
 
 "    Shortcut {{{
