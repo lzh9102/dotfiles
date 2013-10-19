@@ -6,7 +6,6 @@ FILES="""
 vimrc
 gvimrc
 vim/templates/
-vim/bundle/nerdtree/nerdtree_plugin/nerdtree_open.vim
 zshrc
 gitconfig
 hgrc
