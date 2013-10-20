@@ -93,7 +93,6 @@ Bundle 'winmanager'
 Bundle 'lzh9102/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'guns/xterm-color-table.vim'
-Bundle 'benmills/vimux'
 Bundle 'mileszs/ack.vim'
 Bundle 'majutsushi/tagbar'
 " }}}
