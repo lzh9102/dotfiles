@@ -315,7 +315,7 @@ nmap <C-c><C-r> :set rnu!<CR>
 nnoremap <C-c><C-b> :EasyBuffer<CR>
 
 " [plugin_vimux]
-nmap <C-c><C-e> :VimuxPromptCommand<CR>
+"nmap <C-c><C-e> :VimuxPromptCommand<CR>
 
 " update (write to disk if modified)
 nmap <C-c><C-u> :update<CR>
