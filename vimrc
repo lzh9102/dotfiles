@@ -127,12 +127,15 @@ set number             " show line numbers
 "set rnu                " relative numbering
 set cursorline         " highlight the current line
 set noshowmatch        " vim already highlights matching parenthesis
-set colorcolumn=80     " display 80-character column
 set laststatus=2       " always display status bar
 set wildmenu           " command completion menu
 set wildmode=list:full " menu: match until the longest common prefix
 set display+=lastline  " show incomplete lines
 syntax on              " enable syntax highlighting
+
+if v:version >= 703
+	set colorcolumn=80     " display 80-character column (only in vim >= 7.3)
+endif
 
 " folding
 "set foldmethod=syntax
