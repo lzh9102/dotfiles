@@ -59,6 +59,12 @@ command_not_found_handler() {
 }
 
 # alias
+# gnu utilities {{{
+if [[ $(uname -o) == GNU* ]]; then
+	alias ls="ls --color=auto"
+	alias grep="grep --color=auto"
+fi
+# }}}
 # cd toward root {{{
 alias ..="cd .."                                # 1
 alias ...="cd ../.."                            # 2
