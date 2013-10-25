@@ -150,6 +150,7 @@ set foldmethod=marker  " fold by markers
 if &t_Co == 256
 	silent! colorscheme distinguished
 else
+	silent! colorscheme desert
 	" popup-menu color settings
 	highlight PmenuSel ctermbg=Green ctermfg=Black
 	highlight Pmenu ctermbg=Brown ctermfg=Black
