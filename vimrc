@@ -34,6 +34,7 @@ if has('python') || has('python3')
 endif
 Bundle 'xaizek/vim-inccomplete'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'hail2u/vim-css3-syntax'
 "Bundle 'xolox/vim-notes'
 "Bundle 'xolox/vim-misc'
 " NOTE: riv uses <C-e> as a prefix, so it will cause delay on scroll down
