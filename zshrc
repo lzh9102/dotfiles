@@ -43,7 +43,7 @@ PROMPT+="%{$fg_bold[green]%}@%{$reset_color%}" # @
 PROMPT+="%{$fg_bold[magenta]%}%m%{$reset_color%}" # hostname
 PROMPT+="%{$fg_bold[cyan]%}:%{$reset_color%}" # :
 PROMPT+="%{$fg_bold[green]%}%~%{$reset_color%}" # working directory
-PROMPT+="%(?.%{$fg_bold[cyan]%}.%{$fg_bold[red]%})>%{$reset_color%} " # >
+PROMPT+="%(?.%{$fg_bold[cyan]%}.%{$fg_bold[red]%})%(#.#.>)%{$reset_color%} " # >
 RPROMPT="%(?..%{$fg_bold[red]%}[%?]%{$reset_color%})" # exit status
 RPROMPT+="%{$fg[yellow]%}(%*)%{$reset_color%}" # time
 # characters considered as part of a word
