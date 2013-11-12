@@ -73,4 +73,4 @@ alias .........="cd ../../../../../../../../"   # 8
 # }}}
 
 # system-specific settings
-[ -f ~/.zshrc-local ] && source ~/.zshrc-local
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
