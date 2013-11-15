@@ -83,6 +83,7 @@ download_file() {
 	echo "downloading $url to ${HOME}/$dest"
 	curl -o "${HOME}/$dest" "$url" > /dev/null 2>&1
 	[ $? -ne 0 ] && echo "error: failed to download $url" && return 1
+	return 0
 }
 
 setup_file() {
