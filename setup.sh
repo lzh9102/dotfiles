@@ -26,7 +26,7 @@ FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
 """
 
 # non-builtin programs that this script depends on
-DEPENDENT_PROGRAMS="git vim"
+DEPENDENT_PROGRAMS="git vim curl"
 
 BACKUP_DIRECTORY=${HOME}/dotfiles-old
 
