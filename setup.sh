@@ -79,6 +79,7 @@ create_link() {
 	local src=$1
 	local dest=$2
 	[ -z "$src" ] && src=`echo "$dest" | sed 's/^\.//'`
+	[ -L "${HOME}/$dest" ] && rm -f "${HOME}/$dest" # remove original link
 	ln -svf "`pwd`/$src" "${HOME}/$dest"
 }
 
