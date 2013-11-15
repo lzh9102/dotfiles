@@ -58,9 +58,6 @@ command_not_found_handler() {
 	return 0
 }
 
-# alias
-alias ls="ls --color=auto"
-alias grep="grep --color=auto"
 # cd toward root {{{
 alias ..="cd .."                                # 1
 alias ...="cd ../.."                            # 2
@@ -73,4 +70,5 @@ alias .........="cd ../../../../../../../../"   # 8
 # }}}
 
 # system-specific settings
+[ -f ~/.zsh/zshrc.system ] && source ~/.zsh/zshrc.system
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

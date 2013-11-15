@@ -20,6 +20,9 @@ FILES="""
 * .pentadactyl/colors/
 * .pentadactyl/plugins/
 * .screenrc
+# system-specific files
+GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
+FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
 """
 
 # non-builtin programs that this script depends on
@@ -127,6 +130,7 @@ echo "$FILES" | while read line; do
 	dest=`get_field_in_line 2 "$line" | remove_trailing_slash`
 	src=`get_field_in_line 3 "$line" | remove_trailing_slash`
 	perm=`get_field_in_line 4 "$line"`
+	[ "$os" != "*" ] && [ "$os" != "`uname -o`" ] && continue # check os
 	if [ -e "${HOME}/$dest" ] && [ ! -L "${HOME}/$dest" ]; then
 		backup_home_file "$dest" # backup if the file exists and is not a symlink
 	fi

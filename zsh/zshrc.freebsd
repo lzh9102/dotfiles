@@ -1,0 +1,3 @@
+# colorized output
+alias ls="ls -G"
+alias grep="grep --color=auto"
