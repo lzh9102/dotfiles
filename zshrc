@@ -69,6 +69,8 @@ alias ........="cd ../../../../../../../"       # 7
 alias .........="cd ../../../../../../../../"   # 8
 # }}}
 
+PATH=$PATH:~/.bin
+
 # system-specific settings
 [ -f ~/.zsh/zshrc.system ] && source ~/.zsh/zshrc.system
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
