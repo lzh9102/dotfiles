@@ -1,12 +1,14 @@
 #!/bin/sh
 
-# fields: os dest src
+# fields: os dest [src [perm]]
 #   os: output of `uname -o` or * for all os
 #   dest: target filename relative to $HOME
 #   src: (optional) source filename or url.
 #        If <src> is a local file, a symbolic link will be created.
 #        If <src> is a url, it will be downloaded and saved as <dest>.
+#   perm: (optional) Set permission of <dest> to <perm>.
 FILES="""
+# files in repository
 * .vimrc
 * .gvimrc
 * .vim/templates/
@@ -86,9 +88,14 @@ download_file() {
 	return 0
 }
 
+set_permission() {
+	chmod -v "$1" "$2" || echo "error: chmod failed: $2"
+}
+
 setup_file() {
 	local src=$1
 	local dest=$2
+	local perm=$3
 	mkdir -p "${HOME}/`dirname $dest`"
 	if echo $src | grep -q '^\(http[s]\?\|ftp\)://'; then # url
 		download_file "$src" "$dest"
@@ -96,6 +103,7 @@ setup_file() {
 		create_link "$src" "$dest"
 	fi
 	[ $? -ne 0 ] && echo "error: failed to setup file $dest"
+	[ ! -z "$perm" ] && set_permission "$perm" "${HOME}/$dest"
 }
 
 get_field_in_line() {
@@ -118,10 +126,11 @@ echo "$FILES" | while read line; do
 	os=`get_field_in_line 1 "$line"`
 	dest=`get_field_in_line 2 "$line" | remove_trailing_slash`
 	src=`get_field_in_line 3 "$line" | remove_trailing_slash`
+	perm=`get_field_in_line 4 "$line"`
 	if [ -e "${HOME}/$dest" ] && [ ! -L "${HOME}/$dest" ]; then
 		backup_home_file "$dest" # backup if the file exists and is not a symlink
 	fi
-	setup_file "$src" "$dest"
+	setup_file "$src" "$dest" "$perm"
 done
 
 post_setup
