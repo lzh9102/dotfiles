@@ -1,35 +1,36 @@
 #!/bin/sh
 
-# configuration files without the leading dot
-# example: vimrc
+# fields: os dest src
+#   os: output of `uname -o` or * for all os
+#   dest: target filename relative to $HOME
+#   src: (optional) source filename or url.
+#        If <src> is a local file, a symbolic link will be created.
+#        If <src> is a url, it will be downloaded and saved as <dest>.
 FILES="""
-vimrc
-gvimrc
-vim/templates/
-zshrc
-gitconfig
-hgrc
-tmux.conf
-pentadactylrc
-pentadactyl/colors/
-pentadactyl/plugins/
-screenrc
+* .vimrc
+* .gvimrc
+* .vim/templates/
+* .zshrc
+* .gitconfig
+* .hgrc
+* .tmux.conf
+* .pentadactylrc
+* .pentadactyl/colors/
+* .pentadactyl/plugins/
+* .screenrc
 """
 
-# check for dependencies
-require() {
-	type $1 > /dev/null 2>&1
-	if [ $? -ne 0 ]; then
-		echo "ERROR: $1 is required but not installed"
-		exit 1
-	fi
-}
-require git
-require vim
+# non-builtin programs that this script depends on
+DEPENDENT_PROGRAMS="git vim"
 
-# post-setup functions
-__post_setup_vimrc() {
+BACKUP_DIRECTORY=${HOME}/dotfiles-old
+
+# additional steps to do after setup
+post_setup() {
+	# vim {{{
+	# create swap directory
 	mkdir -p ${HOME}/.vimswp
+	# install vundle
 	mkdir -p ${HOME}/.vim/bundle
 	local VUNDLE_DIR=${HOME}/.vim/bundle/vundle
 	if [ ! -d "$VUNDLE_DIR" ]; then
@@ -37,67 +38,89 @@ __post_setup_vimrc() {
 	else
 		echo "INFO: skip installation of vundle because it is already installed"
 	fi
+	# install plugins defined in vimrc using vundle
 	vim -c 'BundleInstall' -c 'qa!'
+	# }}}
 }
 
 ##############################
-
-cd "`dirname $0`"
-BACKUP_DIR=${HOME}/dotfiles-old
-REPO_DIR=$PWD
-
-run_cmd() {
-	"$@"
-	if [ $? -ne 0 ]; then
-		echo "ERROR: $1"
-		exit 1
-	fi
-}
 
 check_cmd_exists() {
 	type $1 > /dev/null 2>&1
 }
 
-run_post_setup() {
-	local function=__post_setup_$1
-	if check_cmd_exists $function ; then
-		echo "begin post-setup of $1"
-		$function
-		echo "end post-setup of $1"
+remove_trailing_slash() {
+	sed 's/\/$//'
+}
+
+check_dependency() {
+	check_cmd_exists
+	if [ $? -ne 0 ]; then
+		echo "error: $1 is required but not installed"
+		exit 1
 	fi
 }
 
-backup_original_dotfile() {
-	# usage: backup_original_dotfile <filename-without-the-dot>
-	# example: backup_original_dotfile vimrc
-	local file=${HOME}/.$1
-	if [ -e $file ]; then
-		mkdir -p $BACKUP_DIR/`dirname $1`
-		run_cmd cp -Hrp $file $BACKUP_DIR/`dirname $1`
-		echo "backup $file to $BACKUP_DIR"
+backup_home_file() {
+	echo "backup ${HOME}/$1 to $BACKUP_DIRECTORY/"
+	mv "${HOME}/$1" "$BACKUP_DIRECTORY"
+	if [ $? -ne 0 ]; then
+		echo "error: failed to backup ${HOME}/$1"
+		exit 1
 	fi
 }
 
-dotfile_is_symlink() {
-	# usage: dotfile_is_symlink <filename-without-the-dot>
-	# example: dotfile_is_symlink vimrc
-	[ -L "${HOME}/.$1" ]
+create_link() {
+	local src=$1
+	local dest=$2
+	[ -z "$src" ] && src=`echo "$dest" | sed 's/^\.//'`
+	ln -svf "`pwd`/$src" "${HOME}/$dest"
 }
 
-create_symlink() {
-	# usage: create_symlink <filename-without-the-dot>
-	# see backup_original_dotfile
-	local dest=${HOME}/.$1
-	mkdir -p `dirname $dest`
-	rm -f ${HOME}/.$1
-	run_cmd ln -vsf $REPO_DIR/$1 ${HOME}/.$1
+download_file() {
+	local url=$1
+	local dest=$2
+	echo "downloading $url to ${HOME}/$dest"
+	curl -o "${HOME}/$dest" "$url" > /dev/null 2>&1
+	[ $? -ne 0 ] && echo "error: failed to download $url" && return 1
 }
 
-for file in $FILES; do
-	file=`echo $file | sed 's/\/$//g'` # remove trailing slash
-	if ! dotfile_is_symlink $file; then
-		backup_original_dotfile $file
+setup_file() {
+	local src=$1
+	local dest=$2
+	mkdir -p "${HOME}/`dirname $dest`"
+	if echo $src | grep -q '^\(http[s]\?\|ftp\)://'; then # url
+		download_file "$src" "$dest"
+	else # local file
+		create_link "$src" "$dest"
 	fi
-	create_symlink $file
-	run_post_setup $file
+	[ $? -ne 0 ] && echo "error: failed to setup file $dest"
+}
+
+get_field_in_line() {
+	echo "$2" | awk "{print \$$1}"
+}
+
+##############################
+
+cd `dirname $0`
+
+# check dependencies
+for program in $DEPENDENT_PROGRAMS; do
+	check_dependency $program
 done
+
+# process files
+echo "$FILES" | while read line; do
+	echo "$line" | grep -q '^[ ]*#' && continue # skip comment
+	echo "$line" | grep -q '^[ ]*$' && continue # skip empty line
+	os=`get_field_in_line 1 "$line"`
+	dest=`get_field_in_line 2 "$line" | remove_trailing_slash`
+	src=`get_field_in_line 3 "$line" | remove_trailing_slash`
+	if [ -e "${HOME}/$dest" ] && [ ! -L "${HOME}/$dest" ]; then
+		backup_home_file "$dest" # backup if the file exists and is not a symlink
+	fi
+	setup_file "$src" "$dest"
+done
+
+post_setup
