@@ -131,7 +131,7 @@ setup_file() {
 	mkdir -p "${HOME}/`dirname $dest`"
 	if echo $src | grep -q '^<.*>$'; then # url
 		local id="`echo "$src" | sed -e 's/^<//g' -e 's/>$//g'`"
-		local url_line="`echo "$URLS" | grep "^$id"`"
+		local url_line="`echo "$URLS" | grep "^$id "`"
 		local md5="`get_field_in_line 3 "$url_line"`"
 		src=`get_field_in_line 2 "$url_line"`
 		download_file "$src" "$dest" "$md5"
