@@ -129,7 +129,7 @@ setup_file() {
 	local dest=$2
 	local perm=$3
 	mkdir -p "${HOME}/`dirname $dest`"
-	if echo $src | grep -q '^<.*>$'; then # url
+	if is_download "$src"; then
 		local id="`echo "$src" | sed -e 's/^<//g' -e 's/>$//g'`"
 		local url_line="`echo "$URLS" | grep "^$id "`"
 		local sha1="`get_field_in_line 3 "$url_line"`"
@@ -144,6 +144,10 @@ setup_file() {
 
 get_field_in_line() {
 	echo "$2" | awk "{print \$$1}"
+}
+
+is_download() {
+	echo $1 | grep -q '^<.*>$'
 }
 
 compute_sha1() {
