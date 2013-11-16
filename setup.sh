@@ -79,6 +79,7 @@ check_dependency() {
 }
 
 backup_home_file() {
+	[ ! -e "${HOME}/$1" ] && return 0
 	local parent_dir="`dirname "$BACKUP_DIRECTORY/$1"`"
 	echo "backup ${HOME}/$1 to $parent_dir/$1"
 	mkdir -p "$parent_dir"
@@ -101,11 +102,7 @@ check_sha1sum() {
 	local dest_path=$1
 	local sha1=$2
 	echo "checking sha1 sum of $dest_path"
-	if [ "`compute_sha1 $dest_path`" != "$sha1" ]; then
-		echo "error: $dest_path: sha1 sum mismatch. The file will be deleted."
-		rm -f "$dest_path"
-		return 1
-	fi
+	[ "`compute_sha1 $dest_path`" == "$sha1" ]
 }
 
 download_file() {
@@ -113,11 +110,20 @@ download_file() {
 	local dest=$2
 	local sha1=$3
 	local dest_path="${HOME}/$dest"
+	if [ -f "$dest_path" ] && check_sha1sum "$dest_path" "$sha1"; then
+		echo "checksum ok, use existing file: $dest_path"
+		return 0;
+	fi
 	echo "downloading $url to $dest_path"
 	curl -o "$dest_path" "$url" > /dev/null 2>&1
 	[ $? -ne 0 ] && echo "error: failed to download $url" && return 1
 	if [ ! -z "$sha1" ]; then # check sha1
-		check_sha1sum "$dest_path" $sha1 || return 1
+		check_sha1sum "$dest_path" $sha1
+		if [ $? -ne 0 ]; then
+			echo "error: $dest_path: sha1 sum mismatch. The file will be deleted."
+			rm -f "$dest_path"
+			return 1
+		fi
 	fi
 	return 0
 }
@@ -136,8 +142,14 @@ setup_file() {
 		local url_line="`echo "$URLS" | grep "^$id "`"
 		local sha1="`get_field_in_line 3 "$url_line"`"
 		src=`get_field_in_line 2 "$url_line"`
+		if [ -f "${HOME}/$dest" ]; then # backup file if checksum mismatch
+			check_sha1sum "${HOME}/$dest" "$sha1"
+			[ $? -ne 0 ] && backup_home_file "$dest"
+		fi
 		download_file "$src" "$dest" "$sha1"
 	else # local file
+		# backup if the file exists and is not a symlink
+		[ ! -L "${HOME}/$dest" ] && backup_home_file "$dest"
 		create_link "$src" "$dest"
 	fi
 	[ $? -ne 0 ] && echo "error: failed to setup file $dest" && return 1
@@ -178,9 +190,6 @@ echo "$FILES" | while read line; do
 	src=`get_field_in_line 3 "$line" | remove_trailing_slash`
 	perm=`get_field_in_line 4 "$line"`
 	[ "$os" != "*" ] && [ "$os" != "`uname -o`" ] && continue # check os
-	if [ -e "${HOME}/$dest" ] && [ ! -L "${HOME}/$dest" ]; then
-		backup_home_file "$dest" # backup if the file exists and is not a symlink
-	fi
 	setup_file "$src" "$dest" "$perm"
 done
 
