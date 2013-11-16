@@ -79,8 +79,10 @@ check_dependency() {
 }
 
 backup_home_file() {
-	echo "backup ${HOME}/$1 to $BACKUP_DIRECTORY/"
-	mv "${HOME}/$1" "$BACKUP_DIRECTORY"
+	local parent_dir="`dirname "$BACKUP_DIRECTORY/$1"`"
+	echo "backup ${HOME}/$1 to $parent_dir/$1"
+	mkdir -p "$parent_dir"
+	cp -ar "${HOME}/$1" "$parent_dir"
 	if [ $? -ne 0 ]; then
 		echo "error: failed to backup ${HOME}/$1"
 		exit 1
