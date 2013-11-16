@@ -29,12 +29,12 @@ FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
 * .bin/ack <ack> 755
 """
 
-# fields: id url md5
+# fields: id url sha1
 #   id: a unique identifier consists of alphabets, dots and underscore
 #   url: the mapped url
-#   md5: (optional) the md5 checksum of the downloaded file
+#   sha1: (optional) the sha1 checksum of the downloaded file
 URLS="""
-ack http://beyondgrep.com/ack-2.10-single-file 75a525273bbb601ef7477f535cbe58d1
+ack http://beyondgrep.com/ack-2.10-single-file 6052cee5a4f580006fb9135e46411c5322c24a2a
 """
 
 # non-builtin programs that this script depends on
@@ -95,12 +95,12 @@ create_link() {
 	ln -svf "`pwd`/$src" "${HOME}/$dest"
 }
 
-check_md5sum() {
+check_sha1sum() {
 	local dest_path=$1
-	local md5=$2
-	echo "checking md5 sum of $dest_path"
-	if [ "`compute_md5 $dest_path`" != "$md5" ]; then
-		echo "error: $dest_path: md5 sum mismatch. The file will be deleted."
+	local sha1=$2
+	echo "checking sha1 sum of $dest_path"
+	if [ "`compute_sha1 $dest_path`" != "$sha1" ]; then
+		echo "error: $dest_path: sha1 sum mismatch. The file will be deleted."
 		rm -f "$dest_path"
 		return 1
 	fi
@@ -109,13 +109,13 @@ check_md5sum() {
 download_file() {
 	local url=$1
 	local dest=$2
-	local md5=$3
+	local sha1=$3
 	local dest_path="${HOME}/$dest"
 	echo "downloading $url to $dest_path"
 	curl -o "$dest_path" "$url" > /dev/null 2>&1
 	[ $? -ne 0 ] && echo "error: failed to download $url" && return 1
-	if [ ! -z "$md5" ]; then # check md5
-		check_md5sum "$dest_path" $md5 || return 1
+	if [ ! -z "$sha1" ]; then # check sha1
+		check_sha1sum "$dest_path" $sha1 || return 1
 	fi
 	return 0
 }
@@ -132,9 +132,9 @@ setup_file() {
 	if echo $src | grep -q '^<.*>$'; then # url
 		local id="`echo "$src" | sed -e 's/^<//g' -e 's/>$//g'`"
 		local url_line="`echo "$URLS" | grep "^$id "`"
-		local md5="`get_field_in_line 3 "$url_line"`"
+		local sha1="`get_field_in_line 3 "$url_line"`"
 		src=`get_field_in_line 2 "$url_line"`
-		download_file "$src" "$dest" "$md5"
+		download_file "$src" "$dest" "$sha1"
 	else # local file
 		create_link "$src" "$dest"
 	fi
@@ -146,12 +146,12 @@ get_field_in_line() {
 	echo "$2" | awk "{print \$$1}"
 }
 
-compute_md5() {
-	local MD5=
-	check_cmd_exists md5 && MD5=md5
-	[ -z "$MD5" ] && check_cmd_exists md5sum && MD5=md5sum
-	[ -z "$MD5" ] && echo "error: md5 program not found" && return 1
-	cat $1 | $MD5 | awk '{print $1}'
+compute_sha1() {
+	local SHA1=
+	check_cmd_exists sha1 && SHA1=sha1
+	[ -z "$SHA1" ] && check_cmd_exists sha1sum && SHA1=sha1sum
+	[ -z "$SHA1" ] && echo "error: sha1 program not found" && return 1
+	cat $1 | $SHA1 | awk '{print $1}'
 }
 
 ##############################
