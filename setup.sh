@@ -101,7 +101,6 @@ create_link() {
 check_sha1sum() {
 	local dest_path=$1
 	local sha1=$2
-	echo "checking sha1 sum of $dest_path"
 	[ "`compute_sha1 $dest_path`" == "$sha1" ]
 }
 
@@ -118,6 +117,7 @@ download_file() {
 	curl -o "$dest_path" "$url" > /dev/null 2>&1
 	[ $? -ne 0 ] && echo "error: failed to download $url" && return 1
 	if [ ! -z "$sha1" ]; then # check sha1
+		echo "checking sha1 sum of $dest_path"
 		check_sha1sum "$dest_path" $sha1
 		if [ $? -ne 0 ]; then
 			echo "error: $dest_path: sha1 sum mismatch. The file will be deleted."
