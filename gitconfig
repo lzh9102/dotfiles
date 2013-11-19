@@ -17,3 +17,5 @@
 	dic = diff --cached
 [hub]
 	protocol = https
+[core]
+	quotepath = off
