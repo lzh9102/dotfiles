@@ -27,6 +27,7 @@ GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
 FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
 # urls
 * .bin/ack <ack> 755
+* .bin/cloc <cloc> 755
 """
 
 # fields: id url sha1
@@ -35,6 +36,7 @@ FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
 #   sha1: (optional) the sha1 checksum of the downloaded file
 URLS="""
 ack http://beyondgrep.com/ack-2.10-single-file 6052cee5a4f580006fb9135e46411c5322c24a2a
+cloc http://sourceforge.net/projects/cloc/files/latest/download?source=files d002e85b7deb988e4f88eaf3f9697cf011ec0c8a
 """
 
 # non-builtin programs that this script depends on
@@ -114,7 +116,7 @@ download_file() {
 		return 0;
 	fi
 	echo "downloading $url to $dest_path"
-	curl -o "$dest_path" "$url" > /dev/null 2>&1
+	curl -L -o "$dest_path" "$url" > /dev/null 2>&1
 	[ $? -ne 0 ] && echo "error: failed to download $url" && return 1
 	if [ ! -z "$sha1" ]; then # check sha1
 		echo "checking sha1 sum of $dest_path"
