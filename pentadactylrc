@@ -11,6 +11,10 @@ group user
 nmap -builtin j 6j
 nmap -builtin k 6k
 
+" map C-j and C-k to scrolling
+map <C-j> <C-e>
+map <C-k> <C-y>
+
 " next/prev tab in insert mode
 imap <C-n> <ESC>:tabnext<CR>
 imap <C-p> <ESC>:tabprev<CR>
