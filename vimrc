@@ -283,6 +283,9 @@ set modelines=0
 set fileencodings=utf-8,ucs-bom,big5,gbk,latin1
 set fileencoding=utf-8
 
+" when :make fails, jump to the first error in existing tab or create a new one
+set switchbuf=useopen,usetab,newtab
+
 "    File & Buffer End }}}
 
 "    Shortcut {{{
