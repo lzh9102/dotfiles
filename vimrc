@@ -329,6 +329,9 @@ nnoremap <C-c><C-b> :EasyBuffer<CR>
 " update (write to disk if modified)
 nmap <C-c><C-u> :update<CR>
 
+" open corresponding header/source in tab
+nmap <C-c><C-a> :AT<CR>
+
 " write as root
 " superceded by sudoedit plugin
 "function! WriteAsRoot()
