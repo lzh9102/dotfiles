@@ -29,9 +29,9 @@ Bundle 'HyperList'
 Bundle 'vim-scripts/DoxyGen-Syntax'
 Bundle 'c9s/perlomni.vim'
 Bundle 'myhere/vim-nodejs-complete'
-if has('python') || has('python3')
-	Bundle 'Rip-Rip/clang_complete'
-endif
+"if has('python') || has('python3')
+"	Bundle 'Rip-Rip/clang_complete'
+"endif
 Bundle 'xaizek/vim-inccomplete'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'hail2u/vim-css3-syntax'
@@ -65,13 +65,13 @@ else " use snipMate instead if vim is not compiled with python
 endif
 
 Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-speeddating'
+"Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 "Bundle 'kana/vim-fakeclip'
 Bundle 'Align'
-Bundle 'camelcasemotion'
+"Bundle 'camelcasemotion'
 "Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'vim-scripts/utl.vim'
+"Bundle 'vim-scripts/utl.vim'
 " }}}
 
 " File and Buffer {{{
