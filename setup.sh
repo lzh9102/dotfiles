@@ -102,21 +102,25 @@ download_file() {
 	local sha1=$3
 	local dest_path="${HOME}/$dest"
 	if [ -f "$dest_path" ] && check_sha1sum "$dest_path" "$sha1"; then
-		echo "checksum ok, use existing file: $dest_path"
+		echo "checksum matches, use existing file: $dest_path"
 		return 0;
 	fi
-	echo "downloading $url to $dest_path"
-	curl -L -o "$dest_path" "$url" > /dev/null 2>&1
-	[ $? -ne 0 ] && echo "error: failed to download $url" && return 1
+	echo "downloading $url"
+	curl -L -o "${dest_path}.tmp" "$url" > /dev/null 2>&1
+	if [ $? -ne 0 ]; then # download failed
+		echo "error: failed to download $url"
+		rm -f "${dest_path}.tmp"
+		return 1
+	fi
 	if [ ! -z "$sha1" ]; then # check sha1
-		echo "checking sha1 sum of $dest_path"
-		check_sha1sum "$dest_path" $sha1
+		check_sha1sum "${dest_path}.tmp" "$sha1"
 		if [ $? -ne 0 ]; then
-			echo "error: $dest_path: sha1 sum mismatch. The file will be deleted."
-			rm -f "$dest_path"
+			echo "error: ${dest_path}.tmp: sha1 sum mismatch. The file will be deleted."
+			rm -f "${dest_path}.tmp"
 			return 1
 		fi
 	fi
+	mv "${dest_path}.tmp" "${dest_path}"
 	return 0
 }
 
