@@ -82,18 +82,6 @@ check_dependency() {
 	fi
 }
 
-backup_home_file() {
-	[ ! -e "${HOME}/$1" ] && return 0
-	local parent_dir="`dirname "$BACKUP_DIRECTORY/$1"`"
-	echo "backup ${HOME}/$1 to $parent_dir/$1"
-	mkdir -p "$parent_dir"
-	cp -ar "${HOME}/$1" "$parent_dir"
-	if [ $? -ne 0 ]; then
-		echo "error: failed to backup ${HOME}/$1"
-		exit 1
-	fi
-}
-
 create_link() {
 	local src=$1
 	local dest=$2
@@ -146,14 +134,8 @@ setup_file() {
 		local url_line="`echo "$URLS" | grep "^$id "`"
 		local sha1="`get_field_in_line 3 "$url_line"`"
 		src=`get_field_in_line 2 "$url_line"`
-		if [ -f "${HOME}/$dest" ]; then # backup file if checksum mismatch
-			check_sha1sum "${HOME}/$dest" "$sha1"
-			[ $? -ne 0 ] && backup_home_file "$dest"
-		fi
 		download_file "$src" "$dest" "$sha1"
 	else # local file
-		# backup if the file exists and is not a symlink
-		[ ! -L "${HOME}/$dest" ] && backup_home_file "$dest"
 		create_link "$src" "$dest"
 	fi
 	[ $? -ne 0 ] && echo "error: failed to setup file $dest" && return 1
