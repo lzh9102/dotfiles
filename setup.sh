@@ -26,10 +26,10 @@ FILES="""
 GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
 FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
 # urls
-* .bin/ack <ack> 755
-* .bin/cloc <cloc> 755
-* .bin/interactive-rename <imv> 755
-* .bin/makegen <mkgen> 755
+* .bin/ack                       <ack>              755
+* .bin/cloc                      <cloc>             755
+* .bin/interactive-rename        <imv>              755
+* .bin/makegen                   <mkgen>            755
 """
 
 # fields: id url sha1
