@@ -18,6 +18,7 @@ setopt rmstarsilent # don't confirm 'rm *'
 unsetopt beep
 setopt extended_glob
 unsetopt glob_dots # don't match dot files by *
+unsetopt auto_pushd
 
 # enable auto completion
 autoload -U compinit && compinit
