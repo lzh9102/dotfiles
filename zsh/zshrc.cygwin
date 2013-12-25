@@ -1,3 +1,6 @@
 # colorized output
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
+
+# windows integration
+alias cs='cygstart'
