@@ -4,3 +4,5 @@ hardstatus alwayslastline "%{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw %= %{mk
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 # skip startup copyright message
 startup_message off
+# remap the screen escape key
+escape "\\"
