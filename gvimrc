@@ -4,3 +4,4 @@ set guifont=Monospace\ 14
 "colorscheme solarized
 colorscheme distinguished
 set guioptions-=T guioptions-=m
+set columns=90
