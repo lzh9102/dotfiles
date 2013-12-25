@@ -25,6 +25,7 @@ FILES="""
 # system-specific files
 GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
 FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
+Cygwin    .zsh/zshrc.system zsh/zshrc.cygwin
 # urls
 * .bin/ack                       <ack>              755
 * .bin/cloc                      <cloc>             755
