@@ -41,7 +41,7 @@ URLS="""
 ack http://beyondgrep.com/ack-2.10-single-file 6052cee5a4f580006fb9135e46411c5322c24a2a
 cloc http://sourceforge.net/projects/cloc/files/latest/download?source=files d002e85b7deb988e4f88eaf3f9697cf011ec0c8a
 imv https://raw.github.com/lzh9102/interactive-rename/master/interactive-rename.py
-mkgen https://github.com/lzh9102/makegen/blob/master/makegen.py
+mkgen https://raw.github.com/lzh9102/makegen/master/makegen.py
 """
 
 # non-builtin programs that this script depends on
