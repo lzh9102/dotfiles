@@ -19,3 +19,4 @@
 	protocol = https
 [core]
 	quotepath = off
+	editor = vim
