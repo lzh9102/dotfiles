@@ -1,4 +1,5 @@
 #!/bin/sh
+# install dotfiles to home directory
 
 # fields: os dest [src [perm]]
 #   os: output of `uname -o` or * for all os
