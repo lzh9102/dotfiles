@@ -11,14 +11,14 @@
 #   perm: (optional) Set permission of *dest* to *perm*.
 FILES="""
 # files in repository
-* .vimrc
-* .gvimrc
+* .vimrc vim/vimrc
+* .gvimrc vim/gvimrc
 * .vim/templates/
-* .zshrc
+* .zshrc zsh/zshrc
 * .gitconfig
 * .hgrc
 * .tmux.conf
-* .pentadactylrc
+* .pentadactylrc pentadactyl/pentadactylrc
 * .pentadactyl/colors/
 * .pentadactyl/plugins/
 * .screenrc
