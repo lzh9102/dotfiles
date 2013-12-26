@@ -87,8 +87,18 @@ create_link() {
 	local src=$1
 	local dest=$2
 	[ -z "$src" ] && src=`echo "$dest" | sed 's/^\.//'`
-	[ -L "${HOME}/$dest" ] && rm -f "${HOME}/$dest" # remove original link
-	ln -svf "`pwd`/$src" "${HOME}/$dest"
+	# convert to absolute path
+	src="`pwd`/$src"
+	dest="${HOME}/$dest"
+	# exit on error if $src exists
+	if [ ! -e "$src" ]; then
+		echo "error: source file doesn't exist: $src"
+		return 1
+	fi
+	# remove original link
+	[ -L "$dest" ] && rm -f "$dest"
+	# create link from $dest to $src
+	ln -svf "$src" "$dest"
 }
 
 check_sha1sum() {
