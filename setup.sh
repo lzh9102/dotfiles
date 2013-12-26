@@ -38,7 +38,7 @@ Cygwin    .zsh/zshrc.system zsh/zshrc.cygwin
 #   url: the mapped url
 #   sha1: (optional) the sha1 checksum of the downloaded file
 URLS="""
-ack http://beyondgrep.com/ack-2.10-single-file 6052cee5a4f580006fb9135e46411c5322c24a2a
+ack http://beyondgrep.com/ack-2.12-single-file 667b5f2dd83143848a5bfa47f7ba848cbe556e93
 cloc http://sourceforge.net/projects/cloc/files/latest/download?source=files d002e85b7deb988e4f88eaf3f9697cf011ec0c8a
 imv https://raw.github.com/lzh9102/interactive-rename/master/interactive-rename.py
 mkgen https://raw.github.com/lzh9102/makegen/master/makegen.py
