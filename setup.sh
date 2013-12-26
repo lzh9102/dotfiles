@@ -47,8 +47,6 @@ mkgen https://raw.github.com/lzh9102/makegen/master/makegen.py
 # non-builtin programs that this script depends on
 DEPENDENT_PROGRAMS="git vim curl"
 
-BACKUP_DIRECTORY=${HOME}/dotfiles-old
-
 # additional steps to do after setup
 post_setup() {
 	# vim {{{
