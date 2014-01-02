@@ -5,3 +5,4 @@ set guifont=Monospace\ 14
 colorscheme distinguished
 set guioptions-=T guioptions-=m
 set columns=90
+set guicursor=a:blinkon0
