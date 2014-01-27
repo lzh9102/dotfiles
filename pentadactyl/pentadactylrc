@@ -14,6 +14,9 @@ nmap -builtin k 6k
 " map C-j and C-k to scrolling
 map <C-j> <C-e>
 map <C-k> <C-y>
+" faster scrolling by S-j and S-k
+map J <C-d>
+map K <C-u>
 
 " next/prev tab in insert mode
 imap <C-n> <ESC>:tabnext<CR>
