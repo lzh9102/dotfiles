@@ -54,6 +54,7 @@ Bundle 'surround.vim'
 "Bundle 'tpope/vim-surround'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'vim-scripts/closetag.vim'
+Bundle 'tpope/vim-abolish'
 
 " UltiSnips requires vim compiled with python
 if has('python') || has ('python3')
