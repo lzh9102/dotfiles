@@ -23,6 +23,7 @@ FILES="""
 * .pentadactyl/colors/
 * .pentadactyl/plugins/
 * .screenrc
+* .cgdb/cgdbrc cgdbrc
 # system-specific files
 GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
 FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
