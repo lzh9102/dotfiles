@@ -192,6 +192,9 @@ set ofu=syntaxcomplete#Complete
 " virutaledit mode
 set virtualedit=block
 
+" completion: don't select the first match if there are multiple matches
+set completeopt=longest,menuone
+
 " default indentation settings
 set autoindent
 set backspace=2
