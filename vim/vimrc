@@ -225,6 +225,13 @@ function! s:MapAllModes(key, action)
 endfunction
 command! -nargs=* MapAllModes call s:MapAllModes(<f-args>)
 
+" disable arrow keys (and scrolling in terminal emulator) {{{
+MapAllModes <Up> <nop>
+MapAllModes <Down> <nop>
+MapAllModes <Left> <nop>
+MapAllModes <Right> <nop>
+" }}}
+
 " disable mouse {{{
 MapAllModes <ScrollWheelUp> <nop>
 MapAllModes <S-ScrollWheelUp> <nop>
