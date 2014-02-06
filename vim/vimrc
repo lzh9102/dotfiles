@@ -219,31 +219,25 @@ command! Date execute 'normal a<C-r>=strftime("%Y-%m-%d")<CR><ESC>'
 command! Time execute 'normal a<C-r>=strftime("%H:%M:%S")<CR><ESC>'
 command! DateTime execute 'normal a<C-r>=strftime("%Y-%m-%d %H:%M:%S")<CR><ESC>'
 
-" disable mouse scrolling completely {{{
-map <ScrollWheelUp> <nop>
-map <S-ScrollWheelUp> <nop>
-map <C-ScrollWheelUp> <nop>
-map <ScrollWheelDown> <nop>
-map <S-ScrollWheelDown> <nop>
-map <C-ScrollWheelDown> <nop>
-map <ScrollWheelLeft> <nop>
-map <S-ScrollWheelLeft> <nop>
-map <C-ScrollWheelLeft> <nop>
-map <ScrollWheelRight> <nop>
-map <S-ScrollWheelRight> <nop>
-map <C-ScrollWheelRight> <nop>
-imap <ScrollWheelUp> <nop>
-imap <S-ScrollWheelUp> <nop>
-imap <C-ScrollWheelUp> <nop>
-imap <ScrollWheelDown> <nop>
-imap <S-ScrollWheelDown> <nop>
-imap <C-ScrollWheelDown> <nop>
-imap <ScrollWheelLeft> <nop>
-imap <S-ScrollWheelLeft> <nop>
-imap <C-ScrollWheelLeft> <nop>
-imap <ScrollWheelRight> <nop>
-imap <S-ScrollWheelRight> <nop>
-imap <C-ScrollWheelRight> <nop>
+function! s:MapAllModes(key, action)
+	exec "map " . a:key . " " . a:action
+	exec "imap " . a:key . " " . a:action
+endfunction
+command! -nargs=* MapAllModes call s:MapAllModes(<f-args>)
+
+" disable mouse {{{
+MapAllModes <ScrollWheelUp> <nop>
+MapAllModes <S-ScrollWheelUp> <nop>
+MapAllModes <C-ScrollWheelUp> <nop>
+MapAllModes <ScrollWheelDown> <nop>
+MapAllModes <S-ScrollWheelDown> <nop>
+MapAllModes <C-ScrollWheelDown> <nop>
+MapAllModes <ScrollWheelLeft> <nop>
+MapAllModes <S-ScrollWheelLeft> <nop>
+MapAllModes <C-ScrollWheelLeft> <nop>
+MapAllModes <ScrollWheelRight> <nop>
+MapAllModes <S-ScrollWheelRight> <nop>
+MapAllModes <C-ScrollWheelRight> <nop>
 set mouse=
 " }}}
 
