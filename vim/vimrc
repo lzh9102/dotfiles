@@ -85,6 +85,7 @@ Bundle 'danro/rename.vim'
 Bundle 'lzh9102/vim-indentfinder'
 Bundle 'troydm/easybuffer.vim'
 Bundle 'chrisbra/SudoEdit.vim'
+Bundle 'vim-voom/VOoM'
 "Bundle 'ldx/vim-indentfinder'
 "Bundle 'vim-scripts/vim-fuzzyfinder'
 "Bundle 'ciaranm/detectindent'
@@ -443,5 +444,17 @@ let g:tagbar_width = 30
 "let g:notes_suffix = '.org'
 "let g:notes_title_sync = 'no'
 "let g:notes_smart_quotes = 0
+
+" VOoM outliner {{{
+nmap <C-c><C-v> :VoomToggle<CR>
+let g:voom_ft_modes = {
+	\ 'markdown': 'markdown',
+	\ 'tex': 'latex',
+	\ 'html': 'html',
+	\ 'org': 'org',
+	\ }
+" disable <TAB> key switching between voom and body
+let g:voom_tab_key = "<nop>"
+" }}}
 
 " Plugin Settings End }}}
