@@ -9,7 +9,7 @@ fpath=(~/.zsh/completion $fpath)
 
 # history
 HISTFILE=~/.histfile
-HISTSIZE=1000
+HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 setopt hist_ignore_space
 
