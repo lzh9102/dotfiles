@@ -12,6 +12,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 setopt hist_ignore_space
+setopt extended_history
 
 bindkey -e # emacs-style keybindings
 setopt rmstarsilent # don't confirm 'rm *'
