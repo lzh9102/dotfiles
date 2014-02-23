@@ -395,6 +395,7 @@ let g:nerdtree_add_to_playlist_cmd = 'smplayer -add-to-playlist'
 let g:pymode_lint = 0
 let g:pymode_folding = 0 
 let g:pymode_rope = 0
+let g:pymode_syntax_docstrings = 0
 
 " vim-outliner: allow using tab and space to toggle folding
 "au Filetype vo_base nnoremap <TAB> za
