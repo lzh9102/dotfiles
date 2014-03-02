@@ -294,6 +294,9 @@ set fileencoding=utf-8
 " when :make fails, jump to the first error in existing tab or create a new one
 set switchbuf=useopen,usetab,newtab
 
+" incremental search
+set incsearch
+
 "    File & Buffer End }}}
 
 "    Shortcut {{{
