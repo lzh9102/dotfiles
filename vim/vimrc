@@ -179,6 +179,7 @@ set statusline+=%=\ %y\ %l,\ %c\ \<\ %P\ \>
 
 " highlight non-indent tab characters (2012-09-05)
 match VertSplit /[^\t]\zs\t\+/
+match Error /[ \t]\+$/
 
 " [vim_listchars] show special characters
 set listchars=eol:¬,tab:>-
