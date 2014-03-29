@@ -182,7 +182,7 @@ match VertSplit /[^\t]\zs\t\+/
 match Error /[ \t]\+$/
 
 " [vim_listchars] show special characters
-set listchars=eol:¬,tab:>-
+set listchars=tab:▸\ ,eol:¬
 
 "    Appearance End }}}
 
