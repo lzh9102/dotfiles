@@ -52,6 +52,9 @@ PROMPT2="%_> "
 # characters considered as part of a word
 WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
+# other useful modules
+autoload -U zmv
+
 # always show the prompt at a new line
 setopt prompt_cr
 setopt prompt_sp
