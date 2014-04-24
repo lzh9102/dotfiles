@@ -323,7 +323,7 @@ nmap <C-c><C-n> :tabnew
 nnoremap <C-c><C-h> :set hlsearch!<CR>
 
 " [vim_listchars] toggle show special characters
-nnoremap <C-c><C-l> :set list! list?<CR>
+nnoremap <C-c><C-l> :set list!<CR>
 
 " [plugin_taglist] toggle ctags
 "nmap <F11> :Tlist<CR>
