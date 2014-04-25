@@ -101,6 +101,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'guns/xterm-color-table.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'lzh9102/execute.vim'
 " }}}
 
 " Themes {{{
@@ -348,6 +349,8 @@ nmap <C-c><C-u> :update<CR>
 
 " open corresponding header/source in tab
 nmap <C-c><C-a> :AT<CR>
+
+nmap <C-c><C-x> :Execute<CR>
 
 " write as root
 " superceded by sudoedit plugin
