@@ -59,6 +59,7 @@ Bundle 'tpope/vim-abolish'
 " UltiSnips requires vim compiled with python
 if has('python') || has ('python3')
 	Bundle 'SirVer/ultisnips'
+	Bundle 'honza/vim-snippets'
 	let snippet_plugin = 'ultisnips'
 else " use snipMate instead if vim is not compiled with python
 	Bundle 'snipMate'
