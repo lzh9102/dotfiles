@@ -305,6 +305,9 @@ if v:version >= 703
 	set cryptmethod=blowfish
 endif
 
+" ignore filename patterns when listing files
+set wildignore+=*.o
+
 "    File & Buffer End }}}
 
 "    Shortcut {{{
