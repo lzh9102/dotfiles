@@ -306,7 +306,7 @@ if v:version >= 703
 endif
 
 " ignore filename patterns when listing files
-set wildignore+=*.o
+set wildignore+=*.o,*.pyc
 
 "    File & Buffer End }}}
 
