@@ -14,114 +14,115 @@ end
 " Vundle Setup {{{
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 " }}}
 
-" == Bundles ==
+" == Plugins ==
 " Languages {{{
-Bundle 'jceb/vim-orgmode'
-Bundle 'vim-scripts/Ada-Bundle'
-Bundle 'klen/python-mode'
-Bundle 'helino/vim-json'
-Bundle 'HyperList'
-Bundle 'vim-scripts/DoxyGen-Syntax'
-Bundle 'c9s/perlomni.vim'
-Bundle 'myhere/vim-nodejs-complete'
+Plugin 'jceb/vim-orgmode'
+Plugin 'vim-scripts/Ada-Bundle'
+Plugin 'klen/python-mode'
+Plugin 'helino/vim-json'
+Plugin 'HyperList'
+Plugin 'vim-scripts/DoxyGen-Syntax'
+Plugin 'c9s/perlomni.vim'
+Plugin 'myhere/vim-nodejs-complete'
 "if has('python') || has('python3')
-"	Bundle 'Rip-Rip/clang_complete'
+"	Plugin 'Rip-Rip/clang_complete'
 "endif
-Bundle 'xaizek/vim-inccomplete'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'wavded/vim-stylus'
-"Bundle 'xolox/vim-notes'
-"Bundle 'xolox/vim-misc'
+Plugin 'xaizek/vim-inccomplete'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'wavded/vim-stylus'
+"Plugin 'xolox/vim-notes'
+"Plugin 'xolox/vim-misc'
 " NOTE: riv uses <C-e> as a prefix, so it will cause delay on scroll down
-"Bundle 'Rykka/riv.vim'
-"Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
-"Bundle 'vimoutliner/vimoutliner'
-"Bundle 'davidhalter/jedi-vim'
-"Bundle 'ingydotnet/vroom-pm'
+"Plugin 'Rykka/riv.vim'
+"Plugin 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+"Plugin 'vimoutliner/vimoutliner'
+"Plugin 'davidhalter/jedi-vim'
+"Plugin 'ingydotnet/vroom-pm'
 " }}}
 
 " Editing {{{
-Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'git@github.com:lzh9102/YouCompleteMe.git'
-Bundle 'AutoComplPop'
-Bundle 'surround.vim'
-"Bundle 'tpope/vim-surround'
-Bundle 'tmhedberg/matchit'
-Bundle 'vim-scripts/closetag.vim'
-Bundle 'tpope/vim-abolish'
+Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'git@github.com:lzh9102/YouCompleteMe.git'
+Plugin 'AutoComplPop'
+Plugin 'surround.vim'
+"Plugin 'tpope/vim-surround'
+Plugin 'tmhedberg/matchit'
+Plugin 'vim-scripts/closetag.vim'
+Plugin 'tpope/vim-abolish'
 
 " UltiSnips requires vim compiled with python
 if has('python') || has ('python3')
-	Bundle 'SirVer/ultisnips'
-	Bundle 'honza/vim-snippets'
+	Plugin 'SirVer/ultisnips'
+	Plugin 'honza/vim-snippets'
 	let snippet_plugin = 'ultisnips'
 else " use snipMate instead if vim is not compiled with python
-	Bundle 'snipMate'
+	Plugin 'snipMate'
 	let snippet_plugin = 'snipmate'
 endif
 
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-speeddating'
-Bundle 'tpope/vim-repeat'
-"Bundle 'kana/vim-fakeclip'
-Bundle 'Align'
-Bundle 'argtextobj.vim'
-Bundle 'lzh9102/surround-textobj.vim'
-"Bundle 'camelcasemotion'
-"Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'vim-scripts/utl.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-repeat'
+"Plugin 'kana/vim-fakeclip'
+Plugin 'Align'
+Plugin 'argtextobj.vim'
+Plugin 'lzh9102/surround-textobj.vim'
+"Plugin 'camelcasemotion'
+"Plugin 'kien/rainbow_parentheses.vim'
+"Plugin 'vim-scripts/utl.vim'
 " }}}
 
 " File and Buffer {{{
-Bundle 'kien/ctrlp.vim'
-Bundle 'a.vim'
-Bundle 'vim-scripts/FencView.vim'
-Bundle 'danro/rename.vim'
-Bundle 'lzh9102/vim-indentfinder'
-Bundle 'troydm/easybuffer.vim'
-Bundle 'chrisbra/SudoEdit.vim'
-Bundle 'vim-voom/VOoM'
-"Bundle 'ldx/vim-indentfinder'
-"Bundle 'vim-scripts/vim-fuzzyfinder'
-"Bundle 'ciaranm/detectindent'
+Plugin 'kien/ctrlp.vim'
+Plugin 'a.vim'
+Plugin 'vim-scripts/FencView.vim'
+Plugin 'danro/rename.vim'
+Plugin 'lzh9102/vim-indentfinder'
+Plugin 'troydm/easybuffer.vim'
+Plugin 'chrisbra/SudoEdit.vim'
+Plugin 'vim-voom/VOoM'
+"Plugin 'ldx/vim-indentfinder'
+"Plugin 'vim-scripts/vim-fuzzyfinder'
+"Plugin 'ciaranm/detectindent'
 " }}}
 
 " Extra Utilities {{{
-Bundle 'tpope/vim-fugitive'
-Bundle 'taglist.vim'
-Bundle 'calendar.vim'
-Bundle 'winmanager'
-Bundle 'lzh9102/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'guns/xterm-color-table.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'lzh9102/execute.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'taglist.vim'
+Plugin 'calendar.vim'
+Plugin 'winmanager'
+Plugin 'lzh9102/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'guns/xterm-color-table.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'lzh9102/execute.vim'
 " }}}
 
 " Themes {{{
-"Bundle 'altercation/vim-colors-solarized'
-"Bundle 'twilight'
-Bundle 'lzh9102/vim-distinguished'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'twilight'
+Plugin 'lzh9102/vim-distinguished'
 " }}}
 
 " Libraries {{{
-Bundle 'Shougo/vimproc.vim'
-"Bundle 'vim-scripts/L9'
+Plugin 'Shougo/vimproc.vim'
+"Plugin 'vim-scripts/L9'
 " }}}
 
 " Others {{{
-"Bundle 'HJKL'
-"Bundle 'sophacles/vim-bundle-sparkup'
+"Plugin 'HJKL'
+"Plugin 'sophacles/vim-bundle-sparkup'
 " }}}
 
 " {{{
+call vundle#end()
 filetype plugin indent on
 filetype plugin on
 " }}}

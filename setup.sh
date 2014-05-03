@@ -56,14 +56,14 @@ post_setup() {
 	mkdir -p ${HOME}/.vimswp
 	# install vundle
 	mkdir -p ${HOME}/.vim/bundle
-	local VUNDLE_DIR=${HOME}/.vim/bundle/vundle
+	local VUNDLE_DIR=${HOME}/.vim/bundle/Vundle.vim
 	if [ ! -d "$VUNDLE_DIR" ]; then
-		git clone "git://github.com/gmarik/vundle.git" "$VUNDLE_DIR"
+		git clone "git://github.com/gmarik/Vundle.vim" "$VUNDLE_DIR"
 	else
 		echo "INFO: skip installation of vundle because it is already installed"
 	fi
 	# install plugins defined in vimrc using vundle
-	vim -c 'BundleInstall' -c 'qa!'
+	vim -c 'PluginInstall' -c 'qa!'
 	# }}}
 }
 
