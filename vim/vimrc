@@ -468,6 +468,7 @@ nmap <C-c><C-v> :VoomToggle<CR>
 let g:voom_ft_modes = {
 	\ 'markdown': 'markdown',
 	\ 'tex': 'latex',
+	\ 'rst': 'rest',
 	\ 'html': 'html',
 	\ 'org': 'org',
 	\ }
