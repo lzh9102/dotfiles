@@ -1,2 +1,2 @@
-feh --draw-filename --fullscreen --quiet \
+feh --draw-filename --fullscreen --quiet --scale-down \
 	--fontpath /usr/share/fonts/truetype/ --font DroidSansFallback/12
