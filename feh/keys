@@ -1,0 +1,33 @@
+# menu
+menu_parent h Left
+menu_child  l Right
+menu_down   j Down
+menu_up     k Up
+menu_select space Return
+
+# navigation
+next_img j l Right space
+prev_img k h Left BackSpace
+
+# scrolling image
+scroll_up    K Up
+scroll_down  J Down
+scroll_left  H Left
+scroll_right L Right
+
+# disable file deletion
+remove
+delete
+
+# filename
+toggle_filenames f
+
+# zooming
+zoom_in  i
+zoom_out o
+zoom_default d
+zoom_fit s
+
+# disable saving images
+save_image
+save_filelist

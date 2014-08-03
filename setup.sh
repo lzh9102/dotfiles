@@ -24,6 +24,7 @@ FILES="""
 * .pentadactyl/plugins/
 * .screenrc
 * .cgdb/cgdbrc cgdbrc
+* .config/feh/ feh/
 # system-specific files
 GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
 FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
