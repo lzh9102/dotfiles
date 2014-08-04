@@ -1,3 +1,1 @@
-#!/usr/bin/env python
-
-$(CURSOR_POS)
+#!/usr/bin/env python$(CURSOR_POS)
