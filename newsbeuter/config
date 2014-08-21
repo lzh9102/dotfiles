@@ -1,0 +1,31 @@
+# newsbeuter config file
+# author: Che-Huai Lin <lzh9102@gmail.com>
+
+#browser "w3m %u"
+browser "firefox %u"
+reload-threads 4
+refresh-on-startup yes
+auto-reload yes
+#feed-sort-order unreadarticlecount-asc
+show-read-feeds yes
+show-read-articles yes
+html-renderer "w3m -dump -T text/html"
+
+# colorscheme {{{
+color listnormal color244 color0
+color listfocus  color166 color233 
+color info       color136 color235 
+color background color244 color0
+color article    color244 color0
+# }}}
+
+# keybindings {{{
+bind-key k up
+bind-key j down
+# }}}
+
+# podcast {{{
+download-path "~/Audio/podcast/%h/%n"
+max-downloads 3
+player "mplayer"
+# }}}
