@@ -63,8 +63,8 @@ color   palette-5               219     default
 color   palette-6               190     default
 
 # status
-color   status.header           221     default
-color   status.section          81      default
+#color   status.header           221     default
+#color   status.section          81      default
 color   stat_staged             213     default
 color   stat_unstaged           213     default
 color   stat_untracked          213     default
@@ -80,7 +80,7 @@ color   'Tested-by'             221     default
 color   'Reviewed-by'           221     default
 
 # tree
-color   tree.directory         221     default
+#color   tree.directory         221     default
 
 # LINE(PALETTE_0, "", COLOR_MAGENTA, COLOR_DEFAULT, 0), \
 #   LINE(PALETTE_1, "", COLOR_YELLOW, COLOR_DEFAULT, 0), \
