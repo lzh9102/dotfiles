@@ -108,7 +108,7 @@ create_link() {
 check_sha1sum() {
 	local dest_path=$1
 	local sha1=$2
-	[ "`compute_sha1 $dest_path`" == "$sha1" ]
+	test "`compute_sha1 $dest_path`" = "$sha1"
 }
 
 download_file() {
