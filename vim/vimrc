@@ -188,6 +188,9 @@ match Error /[ \t]\+$/
 " [vim_listchars] show special characters
 set listchars=tab:▸\ ,eol:¬
 
+" disable background color of normal text
+highlight Normal ctermbg=none
+
 "    Appearance End }}}
 
 "    Editing {{{
