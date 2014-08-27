@@ -17,6 +17,7 @@ FILES="""
 * .vim/templates/
 * .zshrc zsh/zshrc
 * .gitconfig
+* .tigrc
 * .hgrc
 * .tmux.conf
 * .pentadactylrc pentadactyl/pentadactylrc
