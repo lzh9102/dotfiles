@@ -37,18 +37,27 @@ autoload -Uz copy-earlier-word
 zle -N copy-earlier-word
 bindkey "m" copy-earlier-word
 
-# command line prompt
+# command line prompt {{{
 autoload -U colors && colors
-PROMPT=
+
+exitstatus_color="%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})"
+PROMPT="${exitstatus_color}┌%{$reset_color%}"
 PROMPT+="%{$fg_bold[cyan]%}%n%{$reset_color%}" # username
 PROMPT+="%{$fg_bold[green]%}@%{$reset_color%}" # @
 PROMPT+="%{$fg_bold[magenta]%}%m%{$reset_color%}" # hostname
 PROMPT+="%{$fg_bold[cyan]%}:%{$reset_color%}" # :
 PROMPT+="%{$fg_bold[green]%}%~%{$reset_color%}" # working directory
-PROMPT+="%(?.%{$fg_bold[cyan]%}.%{$fg_bold[red]%})%(#.#.>)%{$reset_color%} " # >
-RPROMPT="%(?..%{$fg_bold[red]%}[%?]%{$reset_color%})" # exit status
-RPROMPT+="%{$fg[yellow]%}(%*)%{$reset_color%}" # time
+# second line
+PROMPT+="
+${exitstatus_color}└%(#.#.>)%{$reset_color%} "
+unset exitstatus_color
+
+RPROMPT+=" %{$fg[yellow]%}(%*)%{$reset_color%}" # time
+
 PROMPT2="%_> "
+
+# }}}
+
 # characters considered as part of a word
 WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
