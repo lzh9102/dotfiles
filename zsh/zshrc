@@ -37,11 +37,30 @@ autoload -Uz copy-earlier-word
 zle -N copy-earlier-word
 bindkey "m" copy-earlier-word
 
+# virtualenvwrapper integration {{{
+if which virtualenvwrapper_lazy.sh >& /dev/null; then
+	# virtualenvwrapper is installed
+	source "`which virtualenvwrapper_lazy.sh`"
+	# custom prompt
+	export VIRTUAL_ENV_DISABLE_PROMPT=1
+fi
+# function to be used in the command prompt
+function virtualenv_info() {
+	if [ -z "$VIRTUAL_ENV" ]; then # no active virtualenv
+		echo ""
+	else # inside an active virtualenv
+		echo "(${VIRTUAL_ENV##*/})" # remove the path and leave only the env name
+	fi
+}
+# }}}
+
 # command line prompt {{{
 autoload -U colors && colors
+setopt prompt_subst # substitute vairables in prompt at runtime
 
 exitstatus_color="%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})"
 PROMPT="${exitstatus_color}┌%{$reset_color%}"
+PROMPT+="\$(virtualenv_info)"
 PROMPT+="%{$fg_bold[cyan]%}%n%{$reset_color%}" # username
 PROMPT+="%{$fg_bold[green]%}@%{$reset_color%}" # @
 PROMPT+="%{$fg_bold[magenta]%}%m%{$reset_color%}" # hostname
