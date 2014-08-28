@@ -71,7 +71,7 @@ PROMPT+="
 ${exitstatus_color}└%(#.#.>)%{$reset_color%} "
 unset exitstatus_color
 
-RPROMPT+=" %{$fg[yellow]%}(%*)%{$reset_color%}" # time
+RPROMPT=
 
 PROMPT2="%_> "
 
