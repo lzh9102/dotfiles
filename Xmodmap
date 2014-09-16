@@ -1,0 +1,15 @@
+! map capslock key to Mode_switch
+clear Lock
+keycode 66 = NoSymbol NoSymbol
+keycode 66 = Mode_switch
+
+! vim-style nagivation when Mode_switch is pressed
+keysym h = h H Left NoSymbol NoSymbol NoSymbol
+keysym j = j J Down NoSymbol NoSymbol NoSymbol
+keysym k = k K Up NoSymbol NoSymbol NoSymbol
+keysym l = l L Right NoSymbol lstroke Lstroke
+keysym d = d D Delete NoSymbol NoSymbol NoSymbol
+keysym a = a A Home NoSymbol NoSymbol NoSymbol
+keysym e = e E End NoSymbol NoSymbol NoSymbol
+keysym f = f F Page_Down NoSymbol NoSymbol NoSymbol
+keysym b = b B Page_Up NoSymbol NoSymbol NoSymbol
