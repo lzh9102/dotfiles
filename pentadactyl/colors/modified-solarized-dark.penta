@@ -50,8 +50,8 @@ hi s_yellow_back background-color: #b58900 !important;
 hi s_orange_back background-color: #cb4b16 !important;
 hi s_red_back background-color: #dc322f !important;
 hi s_magenta_back background-color: #511432 !important;
-hi s_violet_back background-color: #6c71c4 !important;
-hi s_blue_back background-color: #268bd2 !important;
+hi s_violet_back background-color: #8e8fa0 !important;
+hi s_blue_back background-color: #a4d6ff !important;
 hi s_cyan_back background-color: #2aa198 !important;
 hi s_green_back background-color: #859900 !important;
 
