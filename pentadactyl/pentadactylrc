@@ -43,7 +43,7 @@ nmap <A-c> <ESC>:set nso!=<A-Tab>
 nmap <A-u> <ESC>:set nsu!=<A-Tab>
 
 " colors
-colorscheme modified-solarized-dark
+"colorscheme modified-solarized-dark
 
 " unmap penta-session keys
 nunmap! -group plugin-penta-sessions
