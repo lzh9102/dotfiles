@@ -112,7 +112,7 @@ PATH=$PATH:~/.bin
 # ranger wrapper: start new instance only if it's not in the current shell
 ranger() {
 	if [ -z "$RANGER_LEVEL" ]; then
-		command ranger
+		command ranger "$@"
 	else
 		exit
 	fi
