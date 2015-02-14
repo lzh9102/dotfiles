@@ -54,7 +54,8 @@ Plugin 'AutoComplPop'
 Plugin 'surround.vim'
 "Plugin 'tpope/vim-surround'
 Plugin 'tmhedberg/matchit'
-Plugin 'vim-scripts/closetag.vim'
+"Plugin 'vim-scripts/closetag.vim'
+Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-abolish'
 
 " UltiSnips requires vim compiled with python
@@ -486,5 +487,8 @@ let g:voom_tab_key = "<nop>"
 if executable('ag')
 	let g:ackprg = 'ag --nogroup --nocolor --column'
 end
+
+" ragtag: close-tag
+imap  <C-x>/
 
 " Plugin Settings End }}}
