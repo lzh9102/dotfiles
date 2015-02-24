@@ -29,6 +29,7 @@ Plugin 'HyperList'
 Plugin 'vim-scripts/DoxyGen-Syntax'
 Plugin 'c9s/perlomni.vim'
 Plugin 'myhere/vim-nodejs-complete'
+Plugin 'sophacles/vim-processing'
 "if has('python') || has('python3')
 "	Plugin 'Rip-Rip/clang_complete'
 "endif
