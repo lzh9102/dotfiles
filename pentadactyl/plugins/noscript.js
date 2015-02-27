@@ -28,7 +28,7 @@ function getSites() {
     const blockUntrusted = global && ns.alwaysBlockUntrustedContent;
 
     let res = [];
-    for (let site in array.iterValues(Array.concat(sites.topSite, sites))) {
+    for (let site of array.iterValues(Array.concat(sites.topSite, sites))) {
         let ary = [];
 
         let untrusted    = groups.untrusted.matches(site);
@@ -86,8 +86,8 @@ function getSites() {
 function getObjects() {
     let sites = noscriptOverlay.getSites();
     let general = [], specific = [];
-    for (let group in values(sites.pluginExtras))
-        for (let obj in array.iterValues(group)) {
+    for (let group of values(sites.pluginExtras))
+        for (let obj of array.iterValues(group)) {
             if (!obj.placeholder && (ns.isAllowedObject(obj.url, obj.mime) || obj.tag))
                 continue;
             specific.push(obj.mime + "@" + obj.url);
@@ -95,7 +95,7 @@ function getObjects() {
             general.push("*@" + obj.site);
         }
     sites = buffer.allFrames().map(function (f) f.location.host);
-    for (let filter in values(options["noscript-objects"])) {
+    for (let filter of values(options["noscript-objects"])) {
         let host = util.getHost(util.split(filter, /@/, 2)[1]);
         if (sites.some(function (s) s == host))
             specific.push(filter);
@@ -119,7 +119,7 @@ var onUnload = overlay.overlayObject(gBrowser, {
             return load();
 
         try {
-            for (let [cmd, args] in commands.parseCommands(commandline.command))
+            for (let [cmd, args] of commands.parseCommands(commandline.command))
                 var origURL = args.literalArg;
 
             let isJS = function isJS(url) /^(?:data|javascript):/i.test(url);
@@ -159,7 +159,7 @@ let groupDesc = {
 };
 
 function splitContext(context, list) {
-    for (let [name, title, filter] in values(list)) {
+    for (let [name, title, filter] of values(list)) {
         let ctxt = context.split(name);
         ctxt.title = [title];
         ctxt.filters.push(filter);
@@ -227,7 +227,7 @@ let prefs = {
         ["full",    "showDomain",     "Show the full domain (www.google.com)"]
     ]
 };
-for (let [k, v] in Iterator(prefs))
+for (let [k, v] of iter(prefs))
     prefs[k] = array(v).map(function (v) [v[0], Pref.fromArray(v.map(UTF8))]).toObject();
 
 function getPref(pref)      modules.prefs.get(PrefBase + pref);
@@ -237,9 +237,9 @@ prefs.complete = function prefsComplete(group) function (context) {
     context.keys = { text: "text", description: "description" };
     context.completions = values(prefs[group]);
 }
-prefs.get = function prefsGet(group) [p.text for (p in values(this[group])) if (getPref(p.pref))];
+prefs.get = function prefsGet(group) [p.text for (p of values(this[group])) if (getPref(p.pref))];
 prefs.set = function prefsSet(group, val) {
-    for (let p in values(this[group]))
+    for (let p of values(this[group]))
         setPref(p.pref, val.indexOf(p.text) >= 0);
     return val;
 }
@@ -300,9 +300,9 @@ group.options.add(["script"],
         description: "The list of allowed objects",
         get set() RealSet(array.flatten(
             [Array.concat(v).map(function (v) v + "@" + this, k)
-             for ([k, v] in Iterator(services.noscript.objectWhitelist))])),
+             for ([k, v] of iter(services.noscript.objectWhitelist))])),
         action: function (add, patterns) {
-            for (let pattern in values(patterns)) {
+            for (let pattern of values(patterns)) {
                 let [mime, site] = util.split(pattern, /@/, 2);
                 if (add)
                     services.noscript.allowObject(site, mime);
@@ -363,7 +363,7 @@ group.styles.add("noscript-menu-order", ["chrome://browser/content/browser.xul"]
 
 var INFO =
 ["plugin", { name: "noscript",
-             version: "0.8",
+             version: "0.9",
              href: "http://dactyl.sf.net/pentadactyl/plugins#noscript-plugin",
              summary: "NoScript integration",
              xmlns: "dactyl" },
