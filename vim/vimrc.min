@@ -1,0 +1,42 @@
+" Minimal vimrc without using plugins
+" Put custom settings in ~/.vimrc.local
+
+" general options
+set nocompatible
+syntax on
+filetype indent on
+
+" indent settings
+set autoindent
+set expandtab
+set shiftwidth=3
+set tabstop=3
+set softtabstop=3
+
+" look & feel
+colorscheme desert
+set wildmenu
+if version >= 700 " note: number always takes 7 columns in vim 6.x
+   set number
+endif
+
+" exclude '=' as valid filename characters to ease completion in shell scripts.
+set isfname-==
+
+" shortcut for switching buffers/tabs
+" note: tabs are only supported in vim 7.0+
+if version >= 700 " use tabs
+   nmap <C-n> :tabnext<CR>
+   nmap <C-p> :tabprev<CR>
+else              " use buffers
+   nmap <C-n> :bnext<CR>
+   nmap <C-p> :bprev<CR>
+endif
+
+" filetypes
+au FileType make set noexpandtab
+
+" load custom settings
+if filereadable($HOME . "/.vimrc.local")
+   source $HOME/.vimrc.local
+endif
