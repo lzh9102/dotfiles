@@ -23,6 +23,9 @@ endif
 " exclude '=' as valid filename characters to ease completion in shell scripts.
 set isfname-==
 
+" folding
+set foldmethod=marker
+
 " shortcut for switching buffers/tabs
 " note: tabs are only supported in vim 7.0+
 if version >= 700 " use tabs
