@@ -36,6 +36,10 @@ else              " use buffers
    nmap <C-p> :bprev<CR>
 endif
 
+" enable repeat indent/unindent
+vnoremap > >gv
+vnoremap < <gv
+
 " filetypes
 au FileType make set noexpandtab
 
