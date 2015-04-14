@@ -112,10 +112,11 @@ Plugin 'lzh9102/execute.vim'
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'twilight'
 Plugin 'lzh9102/vim-distinguished'
+Plugin 'zeis/vim-kolor'
 " }}}
 
 " Libraries {{{
-Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/vimproc.vim'
 "Plugin 'vim-scripts/L9'
 " }}}
 
