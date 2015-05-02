@@ -310,7 +310,7 @@ set switchbuf=useopen,usetab,newtab
 set incsearch
 
 " use blowfish as default encryption method (only available in vim >= 7.3)
-if v:version >= 703
+if !has('nvim') && v:version >= 703
 	set cryptmethod=blowfish
 endif
 
