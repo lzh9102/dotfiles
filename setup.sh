@@ -26,7 +26,6 @@ FILES="""
 * .screenrc
 * .cgdb/cgdbrc cgdbrc
 * .config/feh/ feh/
-* .newsbeuter/config
 * .Xmodmap
 # system-specific files
 GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
