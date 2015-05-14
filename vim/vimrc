@@ -185,9 +185,10 @@ set statusline+=\ %{FugitiveStatusLine()} " git branch (when in git repo)
 set statusline+=%m
 set statusline+=%=\ %y\ %l,\ %c\ \<\ %P\ \>
 
-" highlight non-indent tab characters (2012-09-05)
-match VertSplit /[^\t]\zs\t\+/
-match Error /[ \t]\+$/
+" highlight non-indent tab characters and trailing spaces
+highlight ExtraSpace ctermbg=129 guibg=#00ff00 " FIXME: guibg not working
+match ExtraSpace /[^\t]\zs\t\+/
+2match ExtraSpace /[ \t]\+$/
 
 " [vim_listchars] show special characters
 set listchars=tab:▸\ ,eol:¬
