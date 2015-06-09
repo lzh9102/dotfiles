@@ -68,9 +68,7 @@ let onUnload = overlay.overlayObject(gBrowser, {
         if (tab == tabs.getTab()) {
             let tabList = tabs.visibleTabs;
             let idx = tabList.indexOf(tab);
-            let tabclose_values = values(options["tabclose"]);
-            for (let i=0; i<tabclose_values.length; i++) {
-                let val = tabclose_values[i];
+            for (let val of values(options["tabclose"])) {
                 if (val == "opener" && tab.dactylOwner && tabs.allTabs.indexOf(tab.dactylOwner.get()) >= 0)
                     tabs.select(tab.dactylOwner.get());
                 else if (val == "previous" && tabs.alternate)
