@@ -23,7 +23,6 @@ FILES="""
 * .pentadactylrc pentadactyl/pentadactylrc
 * .pentadactyl/colors/
 * .pentadactyl/plugins/
-* .screenrc
 * .cgdb/cgdbrc cgdbrc
 * .config/feh/ feh/
 * .Xmodmap
