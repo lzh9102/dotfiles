@@ -72,6 +72,11 @@ post_setup() {
 
 ##############################
 
+relpath() { # compute relative path for $1 with respect to $2
+	perl -e 'use File::Spec; print File::Spec->abs2rel(@ARGV) . "\n"' $1 $2 \
+		2>/dev/null
+}
+
 check_cmd_exists() {
 	type $1 > /dev/null 2>&1
 }
@@ -94,12 +99,17 @@ create_link() {
 	[ -z "$src" ] && src=`echo "$dest" | sed 's/^\.//'`
 	# convert to absolute path
 	src="`pwd`/$src"
-	dest="${HOME}/$dest"
 	# exit on error if $src exists
 	if [ ! -e "$src" ]; then
 		echo "error: source file doesn't exist: $src"
 		return 1
 	fi
+
+	# convert src to path relative to home (NOTE: "relpath" may fail)
+	src_relative="`relpath "$src" "${HOME}"`"
+	[ $? -eq 0 ] && src="$src_relative" # only apply if "relpath" succeeded
+
+	dest="${HOME}/$dest"
 	# remove original link
 	[ -L "$dest" ] && rm -f "$dest"
 	# create link from $dest to $src
