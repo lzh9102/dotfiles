@@ -1,3 +1,1 @@
-#!/bin/sh
-
-$(CURSOR_POS)
+#!/bin/$(CURSOR_POS)sh
