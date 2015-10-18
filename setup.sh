@@ -105,11 +105,13 @@ create_link() {
 		return 1
 	fi
 
-	# convert src to path relative to home (NOTE: "relpath" may fail)
-	src_relative="`relpath "$src" "${HOME}"`"
+	dest="${HOME}/$dest"
+	dest_dir="`dirname "$dest"`"
+
+	# convert src to path relative to destination dir (NOTE: "relpath" may fail)
+	src_relative="`relpath "$src" "$dest_dir"`"
 	[ $? -eq 0 ] && src="$src_relative" # only apply if "relpath" succeeded
 
-	dest="${HOME}/$dest"
 	# remove original link
 	[ -L "$dest" ] && rm -f "$dest"
 	# create link from $dest to $src
