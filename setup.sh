@@ -20,6 +20,7 @@ FILES="""
 * .tigrc
 * .hgrc
 * .tmux.conf
+* .octaverc
 * .pentadactylrc pentadactyl/pentadactylrc
 * .pentadactyl/colors/
 * .pentadactyl/plugins/
