@@ -59,7 +59,7 @@ autoload -U colors && colors
 setopt prompt_subst # substitute vairables in prompt at runtime
 
 exitstatus_color="%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})"
-PROMPT="${exitstatus_color}╭%{$reset_color%}"
+PROMPT="${exitstatus_color}┌%{$reset_color%}"
 PROMPT+="\$(virtualenv_info)"
 PROMPT+="%{$fg_bold[cyan]%}%n%{$reset_color%}" # username
 PROMPT+="%{$fg_bold[green]%}@%{$reset_color%}" # @
@@ -68,7 +68,7 @@ PROMPT+="%{$fg_bold[cyan]%}:%{$reset_color%}" # :
 PROMPT+="%{$fg_bold[green]%}%~%{$reset_color%}" # working directory
 # second line
 PROMPT+="
-${exitstatus_color}╰%(#.#.>)%{$reset_color%} "
+${exitstatus_color}└%(#.#.>)%{$reset_color%} "
 unset exitstatus_color
 
 RPROMPT=
