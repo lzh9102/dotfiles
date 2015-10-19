@@ -15,6 +15,7 @@ FILES="""
 * .vimrc vim/vimrc
 * .gvimrc vim/gvimrc
 * .vim/templates/
+* .vim/after/
 * .zshrc zsh/zshrc
 * .gitconfig
 * .tigrc
