@@ -229,6 +229,12 @@ set isfname-==
 vnoremap > >gv
 vnoremap < <gv
 
+" workaround for [[ and ]] when the opening '{' is not on the first column
+map [[ ?{<CR>w99[{
+map ][ /}<CR>b99]}
+map ]] j0[[%/{<CR>
+map [] k$][%?}<CR>
+
 " inserting date and time
 command! Date execute 'normal a<C-r>=strftime("%Y-%m-%d")<CR><ESC>'
 command! Time execute 'normal a<C-r>=strftime("%H:%M:%S")<CR><ESC>'
