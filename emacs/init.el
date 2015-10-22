@@ -42,6 +42,8 @@
 
 (keyboard-translate ?\C-h ?\C-?)  ; map ctrl-h to backspace
 (define-key global-map (kbd "RET") 'newline-and-indent) ; autoindent
+(add-hook 'after-change-major-mode-hook
+	  (lambda () (modify-syntax-entry ?_ "w"))) ; treat underscore as part of a word
 
 ;; buffers
 
