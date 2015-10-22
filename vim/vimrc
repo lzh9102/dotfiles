@@ -325,6 +325,9 @@ endif
 " ignore filename patterns when listing files
 set wildignore+=*.o,*.pyc
 
+" close and delete file
+command CloseAndDelete call delete(expand('%')) | bdelete!
+
 "    File & Buffer End }}}
 
 "    Shortcut {{{
