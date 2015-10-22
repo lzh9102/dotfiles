@@ -23,6 +23,7 @@
 (menu-bar-mode -1)        ; disable the menu bar
 (tool-bar-mode -1)        ; disable toolbar
 (scroll-bar-mode -1)      ; disable scrollbar
+(blink-cursor-mode -1)    ; disable cursor blinking
 
 ;; theme
 
