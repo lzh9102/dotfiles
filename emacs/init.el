@@ -16,6 +16,9 @@
 (setq evil-want-C-u-scroll t)  ; NOTE: this line must precede (require 'evil)
 (require 'evil)
 (evil-mode t)
+; evil-easymotion
+(evilem-default-keybindings "-")
+(setq evilem-keys (append "abcdefghijklmnopqrstuvwxyz" nil))
 
 ;; appearance
 
