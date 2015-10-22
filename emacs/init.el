@@ -9,6 +9,21 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
+;; download and install packages
+(unless (file-exists-p package-user-dir)
+  (package-refresh-contents))
+
+(defun ensure-package-installed (&rest packages)
+  (mapcar (lambda (package)
+	    (unless (package-installed-p package)
+	      (package-install package)))
+	  packages))
+
+(ensure-package-installed 'evil
+			  'evil-easymotion
+			  'helm
+			  'zenburn-theme)
+
 ;; vim emulation mode
 
 (setq evil-overriding-maps nil)
