@@ -41,3 +41,7 @@
 
 (require 'helm)
 (helm-mode 1)
+
+;; files
+
+(setq make-backup-files nil)
