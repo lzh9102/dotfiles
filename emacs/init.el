@@ -27,6 +27,7 @@
 ;; theme
 
 (load-theme 'zenburn t)
+(text-scale-set 1) ; enlarge buffer font size
 
 ;; line numbers
 (require 'linum)
