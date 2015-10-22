@@ -27,7 +27,7 @@
 ;; theme
 
 (load-theme 'zenburn t)
-(set-face-attribute 'default nil :height 120)  ; font size
+(set-face-attribute 'default nil :height 150)  ; font size
 
 ;; line numbers
 (require 'linum)
