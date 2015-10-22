@@ -24,6 +24,10 @@
 (tool-bar-mode -1)        ; disable toolbar
 (scroll-bar-mode -1)      ; disable scrollbar
 
+;; theme
+
+(load-theme 'zenburn t)
+
 ;; line numbers
 (require 'linum)
 (global-linum-mode t)
