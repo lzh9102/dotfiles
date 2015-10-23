@@ -34,6 +34,11 @@
 ; evil-easymotion
 (evilem-default-keybindings "-")
 (setq evilem-keys (append "abcdefghijklmnopqrstuvwxyz" nil))
+; C-u in insert mode
+(define-key evil-insert-state-map (kbd "C-u")
+  (lambda ()
+    (interactive)
+    (evil-delete (point-at-bol) (point))))
 
 ;; appearance
 
