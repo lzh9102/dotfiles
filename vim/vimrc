@@ -333,7 +333,7 @@ endif
 set wildignore+=*.o,*.pyc
 
 " close and delete file
-command CloseAndDelete call delete(expand('%')) | bdelete!
+command! CloseAndDelete call delete(expand('%')) | bdelete!
 
 "    File & Buffer End }}}
 
