@@ -7,6 +7,12 @@ scriptencoding utf-8
 " load python2 (python2 cannot be used after loading python3)
 if has('python')
 end
+
+" Neovim uses $XDG_CONFIG_HOME/nvim, add ~/.vim also
+if has('nvim')
+	set runtimepath+=~/.vim
+endif
+
 " Pre-settings End}}}
 
 " Vundle {{{
@@ -518,3 +524,12 @@ end
 imap  <C-x>/
 
 " Plugin Settings End }}}
+
+" Post-settings {{{
+
+" Neovim uses $XDG_CONFIG_HOME/nvim/after, add ~/.vim/after also
+if has('nvim')
+	set runtimepath+=~/.vim/after
+endif
+
+" }}}
