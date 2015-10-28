@@ -305,13 +305,9 @@ function! LoadTemplate()
 endfunction
 
 " swap and backup file settings
-" Disable Backup and Swap File
-"set nobackup
-"set nowritebackup
-"set noswapfile
-set nobackup
 set swapfile
-set dir=~/.vimswp//
+set dir=~/.vim/swap// " the trailing // tells vim to create swap with full path
+set backupdir=~/.vim/backup/
 
 " recursively search for "tags" file upwards till reaching root
 set tags=./tags;,./TAGS;,tags,TAGS
