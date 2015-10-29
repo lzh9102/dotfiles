@@ -46,8 +46,8 @@ Cygwin    .zsh/zshrc.system zsh/zshrc.cygwin
 URLS="""
 ack http://beyondgrep.com/ack-2.12-single-file 667b5f2dd83143848a5bfa47f7ba848cbe556e93
 cloc http://sourceforge.net/projects/cloc/files/latest/download?source=files 78f6123c967f9b142f77cba48decd11d56ab6c38
-imv https://raw.github.com/lzh9102/interactive-rename/master/interactive-rename.py
-mkgen https://raw.github.com/lzh9102/makegen/master/makegen.py
+imv https://raw.github.com/lzh9102/interactive-rename/master/interactive-rename.py 58ad196a6a2b6ba6fea92ccc046684cbaddf3794
+mkgen https://raw.github.com/lzh9102/makegen/master/makegen.py 9cfa060b6beba4b575c8beb981b73c5d6498bbed
 """
 
 # non-builtin programs that this script depends on
