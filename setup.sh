@@ -56,8 +56,9 @@ DEPENDENT_PROGRAMS="git vim curl"
 # additional steps to do after setup
 post_setup() {
 	# vim {{{
-	# create swap directory
-	mkdir -p ${HOME}/.vimswp
+	# create swap and backup directories
+	mkdir -p ${HOME}/.vim/swap
+	mkdir -p ${HOME}/.vim/backup
 	# install vundle
 	mkdir -p ${HOME}/.vim/bundle
 	local VUNDLE_DIR=${HOME}/.vim/bundle/Vundle.vim
