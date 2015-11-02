@@ -223,6 +223,9 @@ set virtualedit=block
 " completion: don't select the first match if there are multiple matches
 set completeopt=longest,menuone
 
+" the default completion setting of neovim doesn't include "i" (included files)
+set complete=.,w,b,u,t,i
+
 " default indentation settings
 set autoindent
 set backspace=2
