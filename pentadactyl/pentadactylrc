@@ -43,6 +43,7 @@ nmap <A-c> <ESC>:set nso!=<A-Tab>
 nmap <A-u> <ESC>:set nsu!=<A-Tab>
 
 " colors
+" NOTE: disabled because colorscheme slows down window creation significantly
 "colorscheme modified-solarized-dark
 
 " unmap penta-session keys
