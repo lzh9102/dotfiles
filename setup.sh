@@ -203,7 +203,7 @@ done
 
 # process files
 echo "$FILES" | while read line; do
-	echo "$line" | grep -q '^[ ]*#' && continue # skip comment
+	line="`echo "$line" | sed 's/#.*$//'`"      # strip comments
 	echo "$line" | grep -q '^[ ]*$' && continue # skip empty line
 	os=`get_field_in_line 1 "$line"`
 	dest=`get_field_in_line 2 "$line" | remove_trailing_slash`
