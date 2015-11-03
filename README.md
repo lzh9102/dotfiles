@@ -1,5 +1,5 @@
 lzh9102's dot files
-=================
+===================
 
 Configuration files for common programs I use.
 
@@ -27,9 +27,8 @@ Features
 ### vim
 - use vundle to manage plugins
 - automatically install all plugins in the setup script
-- swap files are written to `~/.vimswp/`
+- compatible with neovim
 
 ### zsh
-- display current time in right prompt
+- two-line prompt
 - source `~/.zshrc.local` at the end of `~/.zshrc` for system-specific settings
-- I am not using *oh-my-zsh*; you can add it if you like it.
