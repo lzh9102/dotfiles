@@ -245,11 +245,26 @@ set isfname-==
 vnoremap > >gv
 vnoremap < <gv
 
-" workaround for [[ and ]] when the opening '{' is not on the first column
-map [[ ?{<CR>w99[{
-map ][ /}<CR>b99]}
-map ]] j0[[%/{<CR>
-map [] k$][%?}<CR>
+" workaround for [[ and ]] when the opening '{' is not on the first column {{{
+" NOTE: disabled because there are too many exceptions to this rule
+"       (ex. c++ namespaces)
+"function! FunctionBeginForward()
+"	keeppatterns 'normal j0[[%/{'
+"endfunction
+"function! FunctionBeginBackward()
+"	keeppatterns 'normal ?{w99[{'
+"endfunction
+"function! FunctionEndForward()
+"	keeppatterns 'normal /}b99]}'
+"endfunction
+"function! FunctionEndBackward()
+"	keeppatterns 'normal k$][%?}'
+"endfunction
+"map [[ :call FunctionBeginBackward()<CR>
+"map ][ :call FunctionEndForward()<CR>
+"map ]] :call FunctionBeginForward()<CR>
+"map [] :call FunctionEndBackward()<CR>
+" }}}
 
 " inserting date and time
 command! Date execute 'normal a<C-r>=strftime("%Y-%m-%d")<CR><ESC>'
