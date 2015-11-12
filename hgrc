@@ -6,6 +6,7 @@ editor = vim
 progress =
 mq =
 color =
+record =
 
 [progress]
 delay = 1
