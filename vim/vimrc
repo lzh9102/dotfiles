@@ -114,6 +114,7 @@ Plugin 'guns/xterm-color-table.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'lzh9102/execute.vim'
+Plugin 'sotte/presenting.vim'
 " }}}
 
 " Themes {{{
