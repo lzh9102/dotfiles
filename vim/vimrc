@@ -376,7 +376,9 @@ nmap <C-p> gT
 nmap <C-c><C-n> :tabnew 
 
 " toggle hlsearch
+" NOTE: neovim treats <C-h> as backspace, so map <C-c><BS> as well
 nnoremap <C-c><C-h> :set hlsearch!<CR>
+nnoremap <C-c><BS> :set hlsearch!<CR>
 
 " [vim_listchars] toggle show special characters
 nnoremap <C-c><C-l> :set list!<CR>
