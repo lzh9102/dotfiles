@@ -98,6 +98,7 @@ Plugin 'vim-voom/VOoM'
 Plugin 'mkitt/tabline.vim'
 "Plugin 'restore_view.vim'
 Plugin 'ciaranm/securemodelines'
+Plugin 'airblade/vim-gitgutter'
 "Plugin 'ldx/vim-indentfinder'
 "Plugin 'vim-scripts/vim-fuzzyfinder'
 "Plugin 'ciaranm/detectindent'
@@ -539,6 +540,9 @@ end
 
 " ragtag: close-tag
 imap  <C-x>/
+
+" vim-gitgutter
+let g:gitgutter_escape_grep = 1
 
 " Plugin Settings End }}}
 
