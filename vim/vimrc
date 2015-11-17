@@ -107,8 +107,6 @@ Plugin 'airblade/vim-gitgutter'
 " Extra Utilities {{{
 Plugin 'tpope/vim-fugitive'
 Plugin 'taglist.vim'
-Plugin 'calendar.vim'
-Plugin 'winmanager'
 Plugin 'lzh9102/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'guns/xterm-color-table.vim'
