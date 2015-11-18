@@ -64,11 +64,11 @@ post_setup() {
 	local VUNDLE_DIR=${HOME}/.vim/bundle/Vundle.vim
 	if [ ! -d "$VUNDLE_DIR" ]; then
 		git clone "git://github.com/gmarik/Vundle.vim" "$VUNDLE_DIR"
-	else
-		echo "INFO: skip installation of vundle because it is already installed"
 	fi
 	# install plugins defined in vimrc using vundle
-	vim -c 'PluginInstall' -c 'qa!'
+	vim -c 'call append(0, "Installing Vim Plugins...")' \
+		-c 'set nomodifiable' \
+		-c 'PluginInstall' -c 'qa!'
 	# }}}
 }
 
