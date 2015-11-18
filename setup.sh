@@ -44,7 +44,7 @@ Cygwin    .zsh/zshrc.system zsh/zshrc.cygwin
 #   url: the mapped url
 #   sha1: (optional) the sha1 checksum of the downloaded file
 URLS="""
-ack http://beyondgrep.com/ack-2.12-single-file 667b5f2dd83143848a5bfa47f7ba848cbe556e93
+ack http://beyondgrep.com/ack-2.14-single-file 49c43603420521e18659ce3c50778a4894dd4a5f
 cloc https://github.com/AlDanial/cloc/raw/86c075779d1178ac2e8948963860dcda16e83636/cloc 9db7c77d5d85fee1dbf24e006483004ea0119225
 imv https://raw.github.com/lzh9102/interactive-rename/master/interactive-rename.py 58ad196a6a2b6ba6fea92ccc046684cbaddf3794
 mkgen https://raw.github.com/lzh9102/makegen/master/makegen.py 9cfa060b6beba4b575c8beb981b73c5d6498bbed
