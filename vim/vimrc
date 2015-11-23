@@ -91,7 +91,6 @@ Plugin 'a.vim'
 Plugin 'vim-scripts/FencView.vim'
 Plugin 'danro/rename.vim'
 Plugin 'lzh9102/vim-indentfinder'
-Plugin 'troydm/easybuffer.vim'
 Plugin 'chrisbra/SudoEdit.vim'
 Plugin 'vim-voom/VOoM'
 Plugin 'mkitt/tabline.vim'
@@ -390,9 +389,6 @@ nmap <C-c><C-t> :Tagbar<CR>
 " toggle relative numbering
 nmap <C-c><C-r> :set rnu!<CR>
 
-" [plugin_easybuffer]
-nnoremap <C-c><C-b> :EasyBuffer<CR>
-
 " [plugin_vimux]
 "nmap <C-c><C-e> :VimuxPromptCommand<CR>
 
@@ -548,6 +544,7 @@ call unite#custom#profile('default', 'context', {
 
 nnoremap <C-c><C-f> :Unite file<CR>
 nnoremap <C-c><C-p> :UniteWithProjectDir file_rec<CR>
+nnoremap <C-c><C-b> :Unite tab<CR>
 " }}}
 
 " Plugin Settings End }}}
