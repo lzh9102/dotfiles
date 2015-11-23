@@ -87,7 +87,6 @@ Plugin 'lzh9102/surround-textobj.vim'
 " }}}
 
 " File and Buffer {{{
-Plugin 'kien/ctrlp.vim'
 Plugin 'a.vim'
 Plugin 'vim-scripts/FencView.vim'
 Plugin 'danro/rename.vim'
@@ -99,6 +98,7 @@ Plugin 'mkitt/tabline.vim'
 "Plugin 'restore_view.vim'
 Plugin 'ciaranm/securemodelines'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'Shougo/Unite.vim'
 "Plugin 'ldx/vim-indentfinder'
 "Plugin 'vim-scripts/vim-fuzzyfinder'
 "Plugin 'ciaranm/detectindent'
@@ -108,7 +108,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'taglist.vim'
 Plugin 'lzh9102/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'majutsushi/tagbar'
@@ -388,10 +387,6 @@ nnoremap <C-c><C-l> :set list!<CR>
 "nmap <C-c><C-t> :Tlist<CR>
 nmap <C-c><C-t> :Tagbar<CR>
 
-" [plugin_nerdtreetabs] toggle NERDTree explorer (shared across tabs)
-"nmap <F12> :NERDTreeTabsToggle<CR>
-nmap <C-c><C-f> :NERDTreeTabsToggle<CR>
-
 " toggle relative numbering
 nmap <C-c><C-r> :set rnu!<CR>
 
@@ -453,9 +448,6 @@ let g:fencview_autodetect=0
 " easymotion leader
 let g:EasyMotion_leader_key = '-'
 
-" [plugin_nerdtreetabs]
-let g:nerdtree_tabs_open_on_gui_startup = 0
-
 " nerdtree plugins
 let g:nerdtree_open_cmd = 'kde-open'
 let g:nerdtree_add_to_playlist_cmd = 'smplayer -add-to-playlist'
@@ -482,12 +474,6 @@ if snippet_plugin == 'ultisnips'
 	let g:UltiSnipsExpandTrigger="<tab>"
 	let g:UltiSnipsJumpForwardTrigger="<tab>"
 	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-endif
-
-" ctrlp
-let g:ctrlp_map = '<c-c><c-p>'
-if executable('ag')
-	let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --hidden -g ""'
 endif
 
 " rainbow parentheses
@@ -543,6 +529,26 @@ imap  <C-x>/
 
 " vim-gitgutter
 let g:gitgutter_escape_grep = 1
+
+let g:rainbow_active = 0
+"autocmd VimEnter * RainbowToggle
+
+" Unite.vim {{{
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+	nnoremap <buffer> <C-c> :UniteClose<CR>
+	nnoremap <buffer> <ESC> :UniteClose<CR>
+endfunction
+
+call unite#custom#profile('default', 'context', {
+			\ 'start_insert': 1,
+			\ 'smartcase': 1,
+			\ 'direction': 'dynamicbottom',
+			\ })
+
+nnoremap <C-c><C-f> :Unite file<CR>
+nnoremap <C-c><C-p> :UniteWithProjectDir file_rec<CR>
+" }}}
 
 " Plugin Settings End }}}
 
