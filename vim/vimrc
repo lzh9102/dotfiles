@@ -99,7 +99,6 @@ Plugin 'ciaranm/securemodelines'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Shougo/Unite.vim'
 "Plugin 'ldx/vim-indentfinder'
-"Plugin 'vim-scripts/vim-fuzzyfinder'
 "Plugin 'ciaranm/detectindent'
 " }}}
 
@@ -458,11 +457,6 @@ let g:pymode_trim_whitespaces = 0     " don't trim whitespaces on save
 " vim-outliner: allow using tab and space to toggle folding
 "au Filetype vo_base nnoremap <TAB> za
 "au Filetype vo_base nnoremap <SPACE> za
-
-" fuzzyfinder
-nnoremap <Leader>ff :FufFile!<CR>
-nnoremap <Leader>fb :FufBuffer!<CR>
-nnoremap <Leader>ft :FufTag!<CR>
 
 " Snippets
 if snippet_plugin == 'ultisnips'
