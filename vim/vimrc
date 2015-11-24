@@ -383,7 +383,7 @@ nnoremap <C-c><C-l> :set list!<CR>
 " [plugin_taglist] toggle ctags
 "nmap <F11> :Tlist<CR>
 "nmap <C-c><C-t> :Tlist<CR>
-nmap <C-c><C-t> :Tagbar<CR>
+nmap <silent> <C-c><C-t> :Tagbar<CR>
 
 " toggle relative numbering
 nmap <C-c><C-r> :set rnu!<CR>
@@ -395,9 +395,9 @@ nmap <C-c><C-r> :set rnu!<CR>
 nmap <C-c><C-u> :update<CR>
 
 " open corresponding header/source in tab
-nmap <C-c><C-a> :AT<CR>
+nmap <silent> <C-c><C-a> :AT<CR>
 
-nmap <C-c><C-x> :Execute<CR>
+nmap <silent> <C-c><C-x> :Execute<CR>
 
 " write as root
 " superceded by sudoedit plugin
@@ -496,7 +496,7 @@ let g:tagbar_width = 30
 "let g:notes_smart_quotes = 0
 
 " VOoM outliner {{{
-nmap <C-c><C-v> :VoomToggle<CR>
+nmap <silent> <C-c><C-v> :VoomToggle<CR>
 let g:voom_ft_modes = {
 	\ 'markdown': 'markdown',
 	\ 'tex': 'latex',
@@ -536,9 +536,9 @@ call unite#custom#profile('default', 'context', {
 			\ 'direction': 'dynamicbottom',
 			\ })
 
-nnoremap <C-c><C-f> :Unite file<CR>
-nnoremap <C-c><C-p> :UniteWithProjectDir file_rec<CR>
-nnoremap <C-c><C-b> :Unite tab<CR>
+nnoremap <silent> <C-c><C-f> :Unite file<CR>
+nnoremap <silent> <C-c><C-p> :UniteWithProjectDir file_rec<CR>
+nnoremap <silent> <C-c><C-b> :Unite tab<CR>
 " }}}
 
 " Plugin Settings End }}}
