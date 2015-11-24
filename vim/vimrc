@@ -425,7 +425,7 @@ au BufNewFile,BufRead *.md set ft=markdown
 
 " vim-orgmode (2012-09-04)
 " <S-CR> doesn't work, so remap the function to <CR>
-au FileType org nmap <CR> <Plug>OrgNewHeadingBelowNormal
+au FileType org nmap <buffer> <CR> <Plug>OrgNewHeadingBelowNormal
 
 " Utl settings
 let g:utl_cfg_hdl_scm_http = ':!bash -c "firefox %u >& /dev/null &"'
