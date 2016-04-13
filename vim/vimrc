@@ -191,7 +191,7 @@ function! IndentationStatusLine()
 	endif
 endfunction
 set statusline=%<\ [%F]             " filename with path
-set statusline+=\ [%{&encoding},    " encoding
+set statusline+=\ [%{&fileencoding},      " file character encoding
 set statusline+=%{&fileformat}]           " file format
 set statusline+=\ %{FugitiveStatusLine()} " git branch (when in git repo)
 set statusline+=%m
