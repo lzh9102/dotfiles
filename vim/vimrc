@@ -407,6 +407,9 @@ nmap <silent> <C-c><C-x> :Execute<CR>
 "endfunction
 "command WriteAsRoot call WriteAsRoot()
 
+" refresh syntax highlighting
+nmap <silent> <C-l> :syntax sync fromstart<CR>
+
 "    Shortcut End }}}
 
 " File Types {{{
