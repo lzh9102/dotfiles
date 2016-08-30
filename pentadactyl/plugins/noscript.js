@@ -94,10 +94,10 @@ function getObjects() {
             general.push("*@" + obj.url);
             general.push("*@" + obj.site);
         }
-    sites = buffer.allFrames().map(function (f) f.location.host);
+    sites = buffer.allFrames().map(f => f.location.host);
     for (let filter of values(options["noscript-objects"])) {
         let host = util.getHost(util.split(filter, /@/, 2)[1]);
-        if (sites.some(function (s) s == host))
+        if (sites.some(s => s == host))
             specific.push(filter);
     }
     let seen = new RealSet();
@@ -113,7 +113,7 @@ var onUnload = overlay.overlayObject(gBrowser, {
     // Modified from NoScript's own wrapper.
     loadURIWithFlags: function loadURIWithFlags(url) {
         let args = arguments;
-        function load() loadURIWithFlags.superapply(gBrowser, args);
+        let load = () => loadURIWithFlags.superapply(gBrowser, args);
 
         if (!commandline.command || !util.isDactyl(Components.stack.caller))
             return load();
@@ -122,7 +122,7 @@ var onUnload = overlay.overlayObject(gBrowser, {
             for (let [cmd, args] of commands.parseCommands(commandline.command))
                 var origURL = args.literalArg;
 
-            let isJS = function isJS(url) /^(?:data|javascript):/i.test(url);
+            let isJS = url => /^(?:data|javascript):/i.test(url);
             let allowJS = prefs.get("noscript.allowURLBarJS", true);
 
             if (isJS(origURL) && allowJS) {
@@ -141,16 +141,20 @@ var onUnload = overlay.overlayObject(gBrowser, {
     }
 });
 
-highlight.loadCSS(literal(/*
+highlight.loadCSS(String.raw`
     NoScriptAllowed         color: green;
     NoScriptBlocked         color: #444; font-style: italic;
     NoScriptTemp            color: blue;
     NoScriptUntrusted       color: #c00; font-style: italic;
-*/));
+`);
 
 let groupProto = {};
-["temp", "jsPolicy", "untrusted"].forEach(function (group)
-    memoize(groupProto, group, function () services.noscript[group + "Sites"].matches(this.site)));
+["temp", "jsPolicy", "untrusted"].forEach(function (group) {
+    memoize(groupProto, group,
+            function () {
+                return services.noscript[group + "Sites"].matches(this.site);
+            });
+});
 let groupDesc = {
     NoScriptTemp:       "Temporarily allowed",
     NoScriptAllowed:    "Allowed permanently",
@@ -172,30 +176,34 @@ completion.noscriptObjects = function (context) {
     context.compare = CompletionContext.Sort.unsorted;
     context.generate = getObjects;
     context.keys = {
-        text: identity,
-        description: function (key) whitelist.has(key) ? "Allowed" : "Forbidden"
+        text: util.identity,
+        description: key => whitelist.has(key) ? "Allowed" : "Forbidden"
     };
     splitContext(context, getObjects, [
-        ["forbidden", "Forbidden objects", function (item) !whitelist.has(item.item)],
-        ["allowed",   "Allowed objects",   function (item) whitelist.has(item.item)]]);
+        ["forbidden", "Forbidden objects", item => !whitelist.has(item.item)],
+        ["allowed",   "Allowed objects",   item => whitelist.has(item.item)]]);
 };
 completion.noscriptSites = function (context) {
     context.compare = CompletionContext.Sort.unsorted;
     context.generate = getSites;
     context.keys = {
-        text: identity,
-        description: function (site) groupDesc[this.highlight] +
-            (this.groups.untrusted && this.highlight != "NoScriptUntrusted" ? " (untrusted)" : ""),
+        text: util.identity,
+        description: function (site) {
+            return groupDesc[this.highlight] +
+                (this.groups.untrusted && this.highlight != "NoScriptUntrusted" ? " (untrusted)" : "")
+        },
 
-        highlight: function (site) this.groups.temp      ? "NoScriptTemp" :
-                                   this.groups.jsPolicy  ? "NoScriptAllowed" :
-                                   this.groups.untrusted ? "NoScriptUntrusted" :
-                                                           "NoScriptBlocked",
-        groups: function (site) ({ site: site, __proto__: groupProto })
+        highlight: function (site) {
+            return this.groups.temp      ? "NoScriptTemp" :
+                   this.groups.jsPolicy  ? "NoScriptAllowed" :
+                   this.groups.untrusted ? "NoScriptUntrusted" :
+                                           "NoScriptBlocked";
+        },
+        groups: site => ({ site: site, __proto__: groupProto })
     };
     splitContext(context, [
-        ["normal",    "Active sites",    function (item) item.groups.jsPolicy || !item.groups.untrusted],
-        ["untrusted", "Untrusted sites", function (item) !item.groups.jsPolicy && item.groups.untrusted]]);
+        ["normal",    "Active sites",    item => item.groups.jsPolicy || !item.groups.untrusted],
+        ["untrusted", "Untrusted sites", item => !item.groups.jsPolicy && item.groups.untrusted]]);
     context.maxItems = 100;
 }
 
@@ -228,32 +236,36 @@ let prefs = {
     ]
 };
 for (let [k, v] of iter(prefs))
-    prefs[k] = array(v).map(function (v) [v[0], Pref.fromArray(v.map(UTF8))]).toObject();
+    prefs[k] = array(v).map(v => [v[0], Pref.fromArray(v.map(UTF8))]).toObject();
 
-function getPref(pref)      modules.prefs.get(PrefBase + pref);
-function setPref(pref, val) modules.prefs.set(PrefBase + pref, val);
+function getPref(pref)      { return modules.prefs.get(PrefBase + pref); }
+function setPref(pref, val) { return modules.prefs.set(PrefBase + pref, val); }
 
-prefs.complete = function prefsComplete(group) function (context) {
+prefs.complete = group => context => {
     context.keys = { text: "text", description: "description" };
     context.completions = values(prefs[group]);
-}
-prefs.get = function prefsGet(group) [p.text for (p of values(this[group])) if (getPref(p.pref))];
-prefs.set = function prefsSet(group, val) {
+};
+prefs.get = function (group) { return [for (p of values(this[group])) if (getPref(p.pref)) p.text]; };
+prefs.set = function (group, val) {
     for (let p of values(this[group]))
         setPref(p.pref, val.indexOf(p.text) >= 0);
     return val;
 }
-prefs.descs = function prefDescs(group) ["dl", {},
-    template.map(values(this[group]), function (pref)
-        [["dt", {}, pref.text], ["dd", {}, pref.description]])];
+prefs.descs = function prefDescs(group) {
+    return ["dl", {},
+        template.map(values(this[group]), pref =>
+            [["dt", {}, pref.text], ["dd", {}, pref.description]])];
+};
 
-function groupParams(group) ( {
-    getter: function () prefs.get(group),
-    completer: prefs.complete(group),
-    setter: function (val) prefs.set(group, val),
-    initialValue: true,
-    persist: false
-});
+function groupParams(group) {
+    return {
+        getter: () => prefs.get(group),
+        completer: prefs.complete(group),
+        setter: val => prefs.set(group, val),
+        initialValue: true,
+        persist: false
+    };
+}
 group.options.add(["noscript-forbid", "nsf"],
     "The set of permissions forbidden to untrusted sites",
     "stringlist", "",
@@ -267,8 +279,8 @@ group.options.add(["script"],
     "Whether NoScript is enabled",
     "boolean", false,
     {
-        getter: function () services.noscript.jsEnabled,
-        setter: function (val) services.noscript.jsEnabled = val,
+        getter: () => services.noscript.jsEnabled,
+        setter: (val) => services.noscript.jsEnabled = val,
         initialValue: true,
         persist: false
     });
@@ -277,30 +289,32 @@ group.options.add(["script"],
     {
         names: ["noscript-sites", "nss"],
         description: "The list of sites allowed to execute scripts",
-        action: function (add, sites) sites.length && noscriptOverlay.safeAllow(sites, add, false, -1),
-        completer: function (context) completion.noscriptSites(context),
-        has: function (val) hasOwnProperty(services.noscript.jsPolicySites.sitesMap, val) &&
+        action: (add, sites) => sites.length && noscriptOverlay.safeAllow(sites, add, false, -1),
+        completer: (context) => completion.noscriptSites(context),
+        has: (val) => hasOwnProperty(services.noscript.jsPolicySites.sitesMap, val) &&
             !hasOwnProperty(services.noscript.tempSites.sitesMap, val),
-        get set() new RealSet(k for (k in services.noscript.jsPolicySites.sitesMap))
-            .difference(new RealSet(k for (k in services.noscript.tempSites.sitesMap)))
+        get set() {
+            return new RealSet((for (k of services.noscript.jsPolicySites.sitesMap) k))
+                .difference(new RealSet((for (k of services.noscript.tempSites.sitesMap) k)))
+        }
     }, {
         names: ["noscript-tempsites", "nst"],
         description: "The list of sites temporarily allowed to execute scripts",
-        action: function (add, sites) sites.length && noscriptOverlay.safeAllow(sites, add, true, -1),
-        completer: function (context) completion.noscriptSites(context),
-        get set() new RealSet(k for (k in services.noscript.tempSites.sitesMap))
+        action: (add, sites) => sites.length && noscriptOverlay.safeAllow(sites, add, true, -1),
+        completer: (context) => completion.noscriptSites(context),
+        get set() { return new RealSet((for (k of iter(services.noscript.tempSites.sitesMap)) k)) },
     }, {
         names: ["noscript-untrusted", "nsu"],
         description: "The list of untrusted sites",
-        action: function (add, sites) sites.length && services.noscript.setUntrusted(sites, add),
-        completer: function (context) completion.noscriptSites(context),
-        get set() new RealSet(k for (k in services.noscript.untrustedSites.sitesMap))
+        action: (add, sites) => sites.length && services.noscript.setUntrusted(sites, add),
+        completer: (context) => completion.noscriptSites(context),
+        get set() { return new RealSet((for (k of iter(services.noscript.untrustedSites.sitesMap)) k)) },
     }, {
         names: ["noscript-objects", "nso"],
         description: "The list of allowed objects",
-        get set() new RealSet(array.flatten(
-            [Array.concat(v).map(function (v) v + "@" + this, k)
-             for ([k, v] of iter(services.noscript.objectWhitelist))])),
+        get set() { return new RealSet(array.flatten(
+            [for (wListObj of iter(services.noscript.objectWhitelist))
+                Array.concat(wListObj[1]).map(function (v) { return v + "@" + this; }, wListObj[0])])) },
         action: function (add, patterns) {
             for (let pattern of values(patterns)) {
                 let [mime, site] = util.split(pattern, /@/, 2);
@@ -314,7 +328,7 @@ group.options.add(["script"],
                             services.noscript.objectWhitelistLen--;
                         }
                         else {
-                            let types = list.filter(function (type) type != mime);
+                            let types = list.filter(type => type != mime);
                             services.noscript.objectWhitelistLen -= list.length - types.length;
                             services.noscript.objectWhitelist[site] = types;
                             if (!types.length)
@@ -326,9 +340,9 @@ group.options.add(["script"],
             if (add)
                 services.noscript.reloadAllowedObjects(config.browser.selectedBrowser);
         },
-        completer: function (context) completion.noscriptObjects(context)
+        completer: context => completion.noscriptObjects(context)
     }
-].forEach(function (params)
+].forEach(function (params) {
     group.options.add(params.names, params.description,
         "stringlist", "",
         {
@@ -337,10 +351,10 @@ group.options.add(["script"],
                 if (params.completer)
                     params.completer(context)
             },
-            domains: params.domains || function (values) values,
+            domains: params.domains || (values => values),
             has: params.has || bind("has", params.set),
             initialValue: true,
-            getter: params.getter || function () [k for (k of params.set)],
+            getter: params.getter || (() => Array.from(params.set)),
             setter: function (values) {
                 let newset  = new RealSet(values);
                 let current = params.set;
@@ -351,15 +365,9 @@ group.options.add(["script"],
             },
             persist: false,
             privateData: true,
-            validator: params.validator || function () true
-        }));
-
-group.styles.add("noscript-menu-order", ["chrome://browser/content/browser.xul"],
-                 literal(/*
-        #noscript-tbb-popup .scrollbox-innerbox {
-            -moz-box-direction: reverse;
-        }
-    */));
+            validator: params.validator || (() => true),
+        })
+});
 
 var INFO =
 ["plugin", { name: "noscript",

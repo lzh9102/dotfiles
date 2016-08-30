@@ -90,7 +90,7 @@ group.options.add(["tabclose", "tc"],
     "Tab closure options, in order of precedence",
     "stringlist", "left,opener,previous,right",
     {
-        completer: function (context) [
+        completer: context => [
             ["left", "Select the tab to the left when closing"],
             ["opener", UTF8("Select the tab’s opener, if available")],
             ["previous", "Select the previously selected tab"],
@@ -107,7 +107,7 @@ group.options.add(["tabopen", "to"],
                     ["external", "Tabs opened from an external application"],
                     ["link", "Tabs opened by clicking links and the like"],
                     ["orphan", "Tabs opened by any other means"]
-                ].filter(function (e) !hasOwnProperty(extra.values, e[0]));
+                ].filter(e => !hasOwnProperty(extra.values, e[0]));
             return [
                 ["end", "Open new tabs at the end of the tab bar"],
                 ["groupleft", "Open tabs to the left of the current group"],
@@ -143,7 +143,7 @@ var INFO =
                 "first item for which a valid tab exists is used."],
             ["dl", {},
                 template.map(options.get("tabclose").completer(),
-                             function ([k, v])
+                             ([k, v]) =>
                     [["dt", {}, k], ["dd", {}, v]])],
             ["note", {},
                 "This option does not affect the default mappings for ",
@@ -164,13 +164,13 @@ var INFO =
             ["dl", {},
                 template.map(options.get("tabopen")
                                     .completer(null, { values: {} }),
-                             function ([k, v])
+                             ([k, v]) =>
                     [["dt", {}, k], ["dd", {}, v]])],
             ["p", {}, "As are the following values:"],
             ["dl", {},
                 template.map(options.get("tabopen")
                                     .completer(null, { value: "" }),
-                             function ([k, v])
+                             ([k, v]) =>
                     [["dt", {}, k], ["dd", {}, v]])]]]
 ];
 

@@ -89,8 +89,9 @@ group.commands.add(['sessions[ave]','mkses[sion]'],
             lines.push('set runtimepath='+options.runtimepath);
 
         if (/options/.test(sesop)) {
-            let cmds = [cmd.serialize().map(commands.commandToString, cmd) for
-                    (cmd in commands.iterator()) if (cmd.serialize)];
+            let cmds = [for (cmd in commands.iterator())
+                            if (cmd.serialize)
+                                cmd.serialize().map(commands.commandToString, cmd)];
             cmds = array.flatten(cmds);
             lines = lines.concat(cmds);
         }
