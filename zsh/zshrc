@@ -121,3 +121,6 @@ ranger() {
 # system-specific settings
 [ -f ~/.zsh/zshrc.system ] && source ~/.zsh/zshrc.system
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# remove duplicate items in $PATH (in zsh, $PATH is tied to array $path)
+typeset -U path
