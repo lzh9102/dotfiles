@@ -63,7 +63,7 @@ post_setup() {
 	mkdir -p ${HOME}/.vim/bundle
 	local VUNDLE_DIR=${HOME}/.vim/bundle/Vundle.vim
 	if [ ! -d "$VUNDLE_DIR" ]; then
-		git clone "git://github.com/gmarik/Vundle.vim" "$VUNDLE_DIR"
+		git clone "https://github.com/gmarik/Vundle.vim" "$VUNDLE_DIR"
 	fi
 	# install plugins defined in vimrc using vundle
 	vim -c 'call append(0, "Installing Vim Plugins...")' \
