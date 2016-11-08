@@ -51,7 +51,7 @@ mkgen https://raw.github.com/lzh9102/makegen/master/makegen.py 9cfa060b6beba4b57
 """
 
 # non-builtin programs that this script depends on
-DEPENDENT_PROGRAMS="git vim curl"
+DEPENDENT_PROGRAMS="git vim"
 
 # additional steps to do after setup
 post_setup() {
@@ -126,6 +126,20 @@ check_sha1sum() {
 	test "`compute_sha1 $dest_path`" = "$sha1"
 }
 
+call_downloader() {
+	local url=$1
+	local dest=$2
+	if check_cmd_exists curl; then
+		curl -L -o "$dest" "$url" > /dev/null 2>&1
+		return $?
+	elif check_cmd_exists wget; then # fallback to wget if curl is not available
+		wget -O "$dest" "$url" > /dev/null 2>&1
+		return $?
+	fi
+	echo "error: curl or wget not found"
+	return 1 # no downloader available
+}
+
 download_file() {
 	local url=$1
 	local dest=$2
@@ -136,7 +150,7 @@ download_file() {
 		return 0;
 	fi
 	echo "downloading $url"
-	curl -L -o "${dest_path}.tmp" "$url" > /dev/null 2>&1
+	call_downloader "$url" "${dest_path}.tmp"
 	if [ $? -ne 0 ]; then # download failed
 		echo "error: failed to download $url"
 		rm -f "${dest_path}.tmp"
