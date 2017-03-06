@@ -32,6 +32,9 @@ set hintkeys='JKL:MOPIUH'
 " toggle highlight
 nmap <C-h> <ESC>:set hlfind!<CR>
 
+" toggle reader mode
+map gr -js let r = document.getElementById('reader-mode-button'); if (!r.hidden) r.click()
+
 " noscript
 " toggle permission (expects <Enter>)
 nmap <A-s> <ESC>:set nss!=<A-Tab>
