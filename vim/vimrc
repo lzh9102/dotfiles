@@ -194,7 +194,7 @@ set statusline=%<\ [%F]             " filename with path
 set statusline+=\ [%{&fileencoding},      " file character encoding
 set statusline+=%{&fileformat}]           " file format
 set statusline+=\ %{FugitiveStatusLine()} " git branch (when in git repo)
-set statusline+=%m
+set statusline+=%r\ %m                    " file status (readonly/modified)
 set statusline+=%=\ %y\ %{IndentationStatusLine()}\ %l,\ %c\ \<\ %P\ \>
 
 " highlight non-indent tab characters and trailing spaces
