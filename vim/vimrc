@@ -208,6 +208,9 @@ set listchars=tab:▸\ ,eol:¬
 " disable background color of normal text
 highlight Normal ctermbg=none
 
+" disable beeping
+set belloff=all
+
 "    Appearance End }}}
 
 "    Editing {{{
