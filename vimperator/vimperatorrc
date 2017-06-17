@@ -1,0 +1,46 @@
+" Vimperator config file
+" Che-Huai Lin <lzh9102@gmail.com>
+
+set gui=nonavigation
+
+" smooth scroll
+nnoremap j <Down>
+nnoremap k <Up>
+nnoremap <C-d> <Down><Down><Down><Down>
+nnoremap <C-u> <Up><Up><Up><Up>
+nnoremap gg <C-Up>
+nnoremap G <C-Down>
+
+" google search
+nnoremap s :open google<Space>
+nnoremap S :tabnew google<Space>
+
+" map C-j and C-k to scrolling
+map <C-j> <C-e>
+map <C-k> <C-y>
+
+" faster scrolling with J and K
+map J <C-d>
+map K <C-u>
+
+" next/prev tab in insert mode
+imap <C-n> <ESC>:tabnext<CR>
+imap <C-p> <ESC>:tabprev<CR>
+
+" next/prev link patterns
+set nextpattern=\s*下(一|\ )?(頁|篇|页)\s*,^\b(n|N)ext\b,\\b(n|N)ext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b,次へ
+set previouspattern=\s*上(一|\ )?(頁|篇|页)\s*,^\b(p|P)rev|(p|P)revious\b,\\b(p|P)rev|(p|P)revious\\b,^<$,^(<<|«)$,^(<|«),(<|«)$,前へ
+
+" easier hint keys (Shift + RH Chars)
+set hintchars='JKL:MNOPUH'
+
+" try to stay in normal mode after loading a webpage
+set focuscontent
+
+" toggle highlight
+nmap <C-h> <ESC>:set hlsearch!<CR>
+
+" toggle reader mode
+map gr :js let r = document.getElementById('reader-mode-button'); if (!r.hidden) r.click()<CR>
+
+" vim: set ft=vim

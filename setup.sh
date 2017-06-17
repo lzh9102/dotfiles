@@ -22,9 +22,7 @@ FILES="""
 * .hgrc
 * .tmux.conf
 * .octaverc
-* .pentadactylrc pentadactyl/pentadactylrc
-* .pentadactyl/colors/
-* .pentadactyl/plugins/
+* .vimperatorrc vimperator/vimperatorrc
 * .cgdb/cgdbrc cgdbrc
 * .config/feh/ feh/
 * .Xmodmap
