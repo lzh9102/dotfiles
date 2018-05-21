@@ -1,0 +1,15 @@
+diff --git a/tmux.conf b/tmux.conf
+index 5684fbb..d5b9ecd 100644
+--- a/tmux.conf
++++ b/tmux.conf
+@@ -27,8 +27,8 @@ bind-key C-c run "tmux save-buffer - | xclip -i -sel clipboard > /dev/null"
+ bind-key C-v run "xclip -o -sel clipboard | tmux load-buffer -; tmux paste-buffer"
+ 
+ # vi-style key bindings in copy mode
+-bind -Tcopy-mode-vi 'v' send -X begin-selection
+-bind -Tcopy-mode-vi 'y' send -X copy-selection
++bind-key -t vi-copy 'v' begin-selection
++bind-key -t vi-copy 'y' copy-selection
+ 
+ # word separators in copy mode
+ setw -g word-separators " ~!@#$%^&*()-+=|\\[]{}'\";:/?.>,<"
