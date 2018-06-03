@@ -22,7 +22,6 @@ FILES="""
 * .hgrc
 * .tmux.conf
 * .octaverc
-* .vimperatorrc vimperator/vimperatorrc
 * .cgdb/cgdbrc cgdbrc
 * .config/feh/ feh/
 * .Xmodmap
