@@ -85,7 +85,7 @@ remove_trailing_slash() {
 }
 
 check_dependency() {
-	check_cmd_exists
+	check_cmd_exists "$1"
 	if [ $? -ne 0 ]; then
 		echo "error: $1 is required but not installed"
 		exit 1
