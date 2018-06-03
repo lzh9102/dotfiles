@@ -67,6 +67,16 @@ post_setup() {
 		-c 'set nomodifiable' \
 		-c 'PluginInstall' -c 'qa!'
 	# }}}
+
+	# tmux {{{
+	# apply patch if tmux version < 2.4 and tmux.conf is unmodified
+	if check_cmd_exists 'tmux'; then
+		tmux_version=`tmux -V | awk '{print $2}' | sed 's/\./0/g'`
+		if [ $tmux_version -lt 204 ] && ! git_file_modified 'tmux.conf'; then
+			patch < _patches/tmux-before-v2.4.diff
+		fi
+	fi
+	# }}}
 }
 
 ##############################
@@ -78,6 +88,10 @@ relpath() { # compute relative path for $1 with respect to $2
 
 check_cmd_exists() {
 	type $1 > /dev/null 2>&1
+}
+
+git_file_modified() {
+	[ `git status --short "$1" | wc -l` -eq 1 ]
 }
 
 remove_trailing_slash() {
