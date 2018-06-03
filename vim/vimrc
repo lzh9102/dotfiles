@@ -27,22 +27,25 @@ Plugin 'gmarik/Vundle.vim'
 
 " == Plugins ==
 " Languages {{{
-Plugin 'jceb/vim-orgmode'
-Plugin 'vim-scripts/Ada-Bundle'
-Plugin 'klen/python-mode'
-Plugin 'helino/vim-json'
-Plugin 'isene/hyperlist.vim'
+"Plugin 'jceb/vim-orgmode'
+"Plugin 'vim-scripts/Ada-Bundle'
+"Plugin 'klen/python-mode'
+"Plugin 'helino/vim-json'
+"Plugin 'isene/hyperlist.vim'
 Plugin 'vim-scripts/DoxyGen-Syntax'
-Plugin 'c9s/perlomni.vim'
-Plugin 'myhere/vim-nodejs-complete'
-Plugin 'sophacles/vim-processing'
+"Plugin 'c9s/perlomni.vim'
+"Plugin 'myhere/vim-nodejs-complete'
+"Plugin 'sophacles/vim-processing'
+"Plugin 'wting/rust.vim'
 "if has('python') || has('python3')
 "	Plugin 'Rip-Rip/clang_complete'
 "endif
 Plugin 'xaizek/vim-inccomplete'
-Plugin 'digitaltoad/vim-jade'
+"Plugin 'digitaltoad/vim-jade'
 Plugin 'hail2u/vim-css3-syntax'
-Plugin 'wavded/vim-stylus'
+"Plugin 'wavded/vim-stylus'
+"Plugin 'gcov.vim'
+"Plugin 'haskell.vim'
 "Plugin 'xolox/vim-notes'
 "Plugin 'xolox/vim-misc'
 " NOTE: riv uses <C-e> as a prefix, so it will cause delay on scroll down
@@ -59,10 +62,9 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'AutoComplPop'
 Plugin 'surround.vim'
 "Plugin 'tpope/vim-surround'
-Plugin 'tmhedberg/matchit'
 "Plugin 'vim-scripts/closetag.vim'
 Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-abolish'
+"Plugin 'tpope/vim-abolish'
 
 " UltiSnips requires vim compiled with python
 if has('python') || has ('python3')
@@ -74,8 +76,8 @@ else " use snipMate instead if vim is not compiled with python
 	let snippet_plugin = 'snipmate'
 endif
 
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-speeddating'
+"Plugin 'tpope/vim-commentary'
+"Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-repeat'
 "Plugin 'kana/vim-fakeclip'
 Plugin 'Align'
@@ -92,33 +94,37 @@ Plugin 'vim-scripts/FencView.vim'
 Plugin 'danro/rename.vim'
 Plugin 'lzh9102/vim-indentfinder'
 Plugin 'chrisbra/SudoEdit.vim'
-Plugin 'vim-voom/VOoM'
+"Plugin 'vim-voom/VOoM'
 Plugin 'mkitt/tabline.vim'
 "Plugin 'restore_view.vim'
 Plugin 'ciaranm/securemodelines'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
+Plugin 'mhinz/vim-signify'
 Plugin 'Shougo/Unite.vim'
 "Plugin 'ldx/vim-indentfinder'
 "Plugin 'ciaranm/detectindent'
+"Plugin 'Tabmerge'
 " }}}
 
 " Extra Utilities {{{
 Plugin 'tpope/vim-fugitive'
 Plugin 'taglist.vim'
-Plugin 'lzh9102/nerdtree'
-Plugin 'guns/xterm-color-table.vim'
+"Plugin 'lzh9102/nerdtree'
+"Plugin 'guns/xterm-color-table.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'lzh9102/execute.vim'
-Plugin 'sotte/presenting.vim'
-Plugin 'gregsexton/gitv'
+"Plugin 'sotte/presenting.vim'
+"Plugin 'gregsexton/gitv'
+"Plugin 'benekastah/neomake'
 " }}}
 
 " Themes {{{
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'twilight'
 Plugin 'lzh9102/vim-distinguished'
-Plugin 'zeis/vim-kolor'
+"Plugin 'zeis/vim-kolor'
+"Plugin 'sjl/badwolf'
 " }}}
 
 " Libraries {{{
@@ -300,6 +306,10 @@ MapAllModes <S-ScrollWheelRight> <nop>
 MapAllModes <C-ScrollWheelRight> <nop>
 set mouse=
 " }}}
+
+if v:version >= 600
+	runtime macros/matchit.vim
+endif
 
 "    Editing End }}}
 
