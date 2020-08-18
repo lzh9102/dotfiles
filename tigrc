@@ -4,7 +4,7 @@
 # cortesy of cbertoldi (https://github.com/cbertoldi/dotfiles)
 
 # general
-color   default                 15      235
+color   default                 15      0
 color   cursor                  15      241
 color   title-focus             242     221
 color   title-blur              242     221
@@ -91,3 +91,6 @@ color   'Reviewed-by'           221     default
 #   LINE(PALETTE_6, "", COLOR_RED, )
 
 # }}}
+
+# display commit id
+set main-view-id = yes
