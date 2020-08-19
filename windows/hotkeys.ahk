@@ -80,15 +80,12 @@ Browser_Home::return
 ; Start snipping tool
 PrintScreen::Run SnippingTool.exe
 
-; Macros on RControl
->^1::Send {Esc}o{Esc}C^v{Tab}rid:REGR{Esc}
->^2::Send Best regards,{Enter}CheHuai
->^3::Send Thanks,{Enter}CheHuai
->^Up::Send {Volume_Up}
->^Down::Send {Volume_Down}
->^Left::Send {Volume_Mute}
->^o::
-   ; Cygwin terminal open in browser
-   MouseClick, Right
-   Send {Down}{Enter}
+; On Logitech K810, pressing F4 without holding Fn sends Ctrl+Win+Backspace.
+; Map Ctrl+Win+Alt+Backspace => Alt+F4 to enable closing window with Alt+F4 gesture
+^#!Backspace::
+   ; Wait for Alt and Ctrl to be released before sending Alt+F4.
+   ; Without waiting, some modifier keys would be stucked at pressed-down state.
+   KeyWait Alt
+   KeyWait Control
+   Send !{F4}
    return
