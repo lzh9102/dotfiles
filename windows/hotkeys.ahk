@@ -61,10 +61,10 @@ SwitchToLayout(n)
       Send #{Space}
    }
 }
-^1::SwitchToLayout(1)
-^2::SwitchToLayout(2)
-^3::SwitchToLayout(3)
-^4::SwitchToLayout(4)
+!+1::SwitchToLayout(1)
+!+2::SwitchToLayout(2)
+!+3::SwitchToLayout(3)
+!+4::SwitchToLayout(4)
 
 ; Disable Homepage button (too easy to trigger by accident)
 Browser_Home::return
