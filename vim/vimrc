@@ -355,6 +355,9 @@ set switchbuf=useopen,usetab,newtab
 " incremental search
 set incsearch
 
+" hide inactive buffers instead of closing them
+set hidden
+
 " use blowfish as default encryption method (only available in vim >= 7.3)
 if !has('nvim') && v:version >= 703
 	set cryptmethod=blowfish
