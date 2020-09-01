@@ -78,9 +78,11 @@ Browser_Home::return
 ; Alt-1 is close to Alt-Tab
 !1::Send ^#c
 
-; Move window between monitors
+; Window Manipulation
 +#l::Send +#{Right}
 +#h::Send +#{Left}
++#k::WinMaximize A
++#j::WinRestore A
 
 ; Start snipping tool
 PrintScreen::Run SnippingTool.exe
