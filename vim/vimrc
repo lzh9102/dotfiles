@@ -15,135 +15,123 @@ endif
 
 " Pre-settings End}}}
 
-" Vundle {{{
-
-" Vundle Setup {{{
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-" }}}
+" Plugins {{{
+call plug#begin('~/.vim/bundle')
 
 " == Plugins ==
 " Languages {{{
-"Plugin 'jceb/vim-orgmode'
-"Plugin 'vim-scripts/Ada-Bundle'
-"Plugin 'klen/python-mode'
-"Plugin 'helino/vim-json'
-"Plugin 'isene/hyperlist.vim'
-Plugin 'vim-scripts/DoxyGen-Syntax'
-"Plugin 'c9s/perlomni.vim'
-"Plugin 'myhere/vim-nodejs-complete'
-"Plugin 'sophacles/vim-processing'
-"Plugin 'wting/rust.vim'
+"Plug 'jceb/vim-orgmode'
+"Plug 'vim-scripts/Ada-Bundle'
+"Plug 'klen/python-mode'
+"Plug 'helino/vim-json'
+"Plug 'isene/hyperlist.vim'
+Plug 'vim-scripts/DoxyGen-Syntax'
+"Plug 'c9s/perlomni.vim'
+"Plug 'myhere/vim-nodejs-complete'
+"Plug 'sophacles/vim-processing'
+"Plug 'wting/rust.vim'
 "if has('python') || has('python3')
-"	Plugin 'Rip-Rip/clang_complete'
+"	Plug 'Rip-Rip/clang_complete'
 "endif
-Plugin 'xaizek/vim-inccomplete'
-"Plugin 'digitaltoad/vim-jade'
-Plugin 'hail2u/vim-css3-syntax'
-"Plugin 'wavded/vim-stylus'
-"Plugin 'gcov.vim'
-"Plugin 'haskell.vim'
-"Plugin 'xolox/vim-notes'
-"Plugin 'xolox/vim-misc'
+Plug 'xaizek/vim-inccomplete'
+"Plug 'digitaltoad/vim-jade'
+Plug 'hail2u/vim-css3-syntax'
+"Plug 'wavded/vim-stylus'
+"Plug 'vim-scripts/gcov.vim'
+"Plug 'vim-scripts/haskell.vim'
+"Plug 'xolox/vim-notes'
+"Plug 'xolox/vim-misc'
 " NOTE: riv uses <C-e> as a prefix, so it will cause delay on scroll down
-"Plugin 'Rykka/riv.vim'
-"Plugin 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
-"Plugin 'vimoutliner/vimoutliner'
-"Plugin 'davidhalter/jedi-vim'
-"Plugin 'ingydotnet/vroom-pm'
+"Plug 'Rykka/riv.vim'
+"Plug 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+"Plug 'vimoutliner/vimoutliner'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'ingydotnet/vroom-pm'
 " }}}
 
 " Editing {{{
-Plugin 'Lokaltog/vim-easymotion'
-"Plugin 'git@github.com:lzh9102/YouCompleteMe.git'
-Plugin 'AutoComplPop'
-Plugin 'surround.vim'
-"Plugin 'tpope/vim-surround'
-"Plugin 'vim-scripts/closetag.vim'
-Plugin 'tpope/vim-ragtag'
-"Plugin 'tpope/vim-abolish'
+Plug 'Lokaltog/vim-easymotion'
+"Plug 'git@github.com:lzh9102/YouCompleteMe.git'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'vim-scripts/surround.vim'
+"Plug 'tpope/vim-surround'
+"Plug 'vim-scripts/closetag.vim'
+Plug 'tpope/vim-ragtag'
+"Plug 'tpope/vim-abolish'
 
 " UltiSnips requires vim compiled with python
 if has('python') || has ('python3')
-	Plugin 'SirVer/ultisnips'
-	Plugin 'honza/vim-snippets'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
 	let snippet_plugin = 'ultisnips'
 else " use snipMate instead if vim is not compiled with python
-	Plugin 'snipMate'
+	Plug 'vim-scripts/snipMate'
 	let snippet_plugin = 'snipmate'
 endif
 
-"Plugin 'tpope/vim-commentary'
-"Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-repeat'
-"Plugin 'kana/vim-fakeclip'
-Plugin 'Align'
-Plugin 'argtextobj.vim'
-Plugin 'lzh9102/surround-textobj.vim'
-"Plugin 'camelcasemotion'
-"Plugin 'kien/rainbow_parentheses.vim'
-"Plugin 'vim-scripts/utl.vim'
+"Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-repeat'
+"Plug 'kana/vim-fakeclip'
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'lzh9102/surround-textobj.vim'
+"Plug 'vim-scripts/camelcasemotion'
+"Plug 'kien/rainbow_parentheses.vim'
+"Plug 'vim-scripts/utl.vim'
 " }}}
 
 " File and Buffer {{{
-Plugin 'a.vim'
-Plugin 'vim-scripts/FencView.vim'
-Plugin 'danro/rename.vim'
-Plugin 'lzh9102/vim-indentfinder'
-Plugin 'chrisbra/SudoEdit.vim'
-"Plugin 'vim-voom/VOoM'
-Plugin 'mkitt/tabline.vim'
-"Plugin 'restore_view.vim'
-Plugin 'ciaranm/securemodelines'
-"Plugin 'airblade/vim-gitgutter'
-Plugin 'mhinz/vim-signify'
-Plugin 'Shougo/Unite.vim'
-"Plugin 'ldx/vim-indentfinder'
-"Plugin 'ciaranm/detectindent'
-"Plugin 'Tabmerge'
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/FencView.vim'
+Plug 'danro/rename.vim'
+Plug 'lzh9102/vim-indentfinder'
+Plug 'chrisbra/SudoEdit.vim'
+"Plug 'vim-voom/VOoM'
+Plug 'mkitt/tabline.vim'
+"Plug 'vim-scripts/restore_view.vim'
+Plug 'ciaranm/securemodelines'
+"Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
+Plug 'Shougo/Unite.vim'
+"Plug 'ldx/vim-indentfinder'
+"Plug 'ciaranm/detectindent'
+"Plug 'vim-scripts/Tabmerge'
 " }}}
 
 " Extra Utilities {{{
-Plugin 'tpope/vim-fugitive'
-Plugin 'taglist.vim'
-"Plugin 'lzh9102/nerdtree'
-"Plugin 'guns/xterm-color-table.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'lzh9102/execute.vim'
-"Plugin 'sotte/presenting.vim'
-"Plugin 'gregsexton/gitv'
-"Plugin 'benekastah/neomake'
+Plug 'tpope/vim-fugitive', {'tag': 'v2.5'}
+Plug 'vim-scripts/taglist.vim'
+"Plug 'lzh9102/nerdtree'
+"Plug 'guns/xterm-color-table.vim'
+Plug 'mileszs/ack.vim'
+Plug 'majutsushi/tagbar'
+Plug 'lzh9102/execute.vim'
+"Plug 'sotte/presenting.vim'
+"Plug 'gregsexton/gitv'
+"Plug 'benekastah/neomake'
 " }}}
 
 " Themes {{{
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'twilight'
-Plugin 'lzh9102/vim-distinguished'
-"Plugin 'zeis/vim-kolor'
-"Plugin 'sjl/badwolf'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'vim-scripts/twilight'
+Plug 'lzh9102/vim-distinguished'
+"Plug 'zeis/vim-kolor'
+"Plug 'sjl/badwolf'
 " }}}
 
 " Libraries {{{
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'vim-scripts/L9'
+"Plug 'Shougo/vimproc.vim'
+"Plug 'vim-scripts/L9'
 " }}}
 
 " Others {{{
-"Plugin 'HJKL'
-"Plugin 'sophacles/vim-bundle-sparkup'
+"Plug 'vim-scripts/HJKL'
+"Plug 'sophacles/vim-bundle-sparkup'
 " }}}
 
-" {{{
-call vundle#end()
-filetype plugin indent on
-filetype plugin on
-" }}}
-
-" Vundle End }}}
+call plug#end()
+" Plugin End }}}
 
 " Core Editor Settings {{{
 
@@ -549,11 +537,13 @@ function! s:unite_settings()
 	nmap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 
+if exists('*unite#custom#profile')
 call unite#custom#profile('default', 'context', {
 			\ 'start_insert': 1,
 			\ 'smartcase': 1,
 			\ 'direction': 'dynamicbottom',
 			\ })
+endif
 
 nnoremap <silent> <C-c><C-f> :Unite file<CR>
 nnoremap <silent> <C-c><C-p> :UniteWithProjectDir file_rec<CR>

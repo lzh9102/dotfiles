@@ -34,6 +34,7 @@ Cygwin    .zsh/zshrc.system zsh/zshrc.cygwin
 * .bin/cloc                      <cloc>             755
 * .bin/interactive-rename        <imv>              755
 * .bin/makegen                   <mkgen>            755
+* .vim/autoload/plug.vim         <vim-plug>
 """
 
 # fields: id url sha1
@@ -45,6 +46,7 @@ ack http://beyondgrep.com/ack-2.14-single-file 49c43603420521e18659ce3c50778a489
 cloc https://github.com/AlDanial/cloc/raw/86c075779d1178ac2e8948963860dcda16e83636/cloc 9db7c77d5d85fee1dbf24e006483004ea0119225
 imv https://raw.github.com/lzh9102/interactive-rename/master/interactive-rename.py 58ad196a6a2b6ba6fea92ccc046684cbaddf3794
 mkgen https://raw.github.com/lzh9102/makegen/master/makegen.py 9cfa060b6beba4b575c8beb981b73c5d6498bbed
+vim-plug https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 """
 
 # non-builtin programs that this script depends on
@@ -56,17 +58,9 @@ post_setup() {
 	# create swap and backup directories
 	mkdir -p ${HOME}/.vim/swap
 	mkdir -p ${HOME}/.vim/backup
-	# install vundle
-	mkdir -p ${HOME}/.vim/bundle
-	local VUNDLE_DIR=${HOME}/.vim/bundle/Vundle.vim
-	if [ ! -d "$VUNDLE_DIR" ]; then
-		git clone "https://github.com/gmarik/Vundle.vim" "$VUNDLE_DIR"
-	fi
-	# install plugins defined in vimrc using vundle
-	vim -c 'call append(0, "Installing Vim Plugins...")' \
-		-c 'set nomodifiable' \
-		-c 'PluginInstall' -c 'qa!'
-	# }}}
+
+	# install vim plugins
+	vim -c "PlugInstall" -c "qa"
 
 	# tmux {{{
 	# apply patch if tmux version < 2.4 and tmux.conf is unmodified
