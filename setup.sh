@@ -60,7 +60,11 @@ post_setup() {
 	mkdir -p ${HOME}/.vim/backup
 
 	# install vim plugins
-	vim -c "PlugInstall" -c "qa"
+	if [ -f ~/.vim/autoload/plug.vim ]; then
+		vim -c "PlugInstall" -c "qa"
+	else
+		echo "vim-plug cannot be found; skip plugin installation"
+	fi
 
 	# tmux {{{
 	# apply patch if tmux version < 2.4 and tmux.conf is unmodified
@@ -134,11 +138,11 @@ check_sha1sum() {
 call_downloader() {
 	local url=$1
 	local dest=$2
-	if check_cmd_exists curl; then
-		curl -L -o "$dest" "$url" > /dev/null 2>&1
-		return $?
-	elif check_cmd_exists wget; then # fallback to wget if curl is not available
+	if check_cmd_exists wget; then
 		wget -O "$dest" "$url" > /dev/null 2>&1
+		return $?
+	elif check_cmd_exists curl; then
+		curl -L -o "$dest" "$url" > /dev/null 2>&1
 		return $?
 	fi
 	echo "error: curl or wget not found"
