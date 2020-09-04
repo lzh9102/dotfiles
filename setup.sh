@@ -24,7 +24,6 @@ FILES="""
 * .octaverc
 * .cgdb/cgdbrc cgdbrc
 * .config/feh/ feh/
-* .Xmodmap
 # system-specific files
 GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
 FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
