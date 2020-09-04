@@ -68,7 +68,7 @@ post_setup() {
 	# tmux {{{
 	# apply patch if tmux version < 2.4 and tmux.conf is unmodified
 	if check_cmd_exists 'tmux'; then
-		tmux_version=`tmux -V | awk '{print $2}' | sed 's/\./0/g'`
+		tmux_version=`tmux -V | awk '{print $2}' | sed 's/\./0/g' | sed 's/-rc//g'`
 		if [ $tmux_version -lt 204 ] && ! git_file_modified 'tmux.conf'; then
 			patch < _patches/tmux-before-v2.4.diff
 		fi
