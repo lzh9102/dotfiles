@@ -14,6 +14,7 @@ FILES="""
 # files in repository
 * .vimrc vim/vimrc
 * .gvimrc vim/gvimrc
+* .config/nvim/init.vim vim/init.vim
 * .vim/templates/
 * .vim/after/ftplugin vim/filetypes
 * .zshrc zsh/zshrc
