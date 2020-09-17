@@ -48,28 +48,15 @@ SendMode Input
 
 ; Quickly switch between keyboard layouts
 ; Reference: https://autohotkey.com/board/topic/70019-keyboard-layout-switcher-for-many-layouts/
-SwitchToEnglishLayout()
+SwitchToLayout(layout_id)
 {
-   layout_en := DllCall("LoadKeyboardLayout", "Str", "00000409", "Int", 1)
-   PostMessage 0x50, 0, %layout_en%,, A
+	layout := DllCall("LoadKeyboardLayout", "Str", layout_id, "Int", 1)
+   PostMessage 0x50, 0, %layout%,, A
 }
-SwitchToLayout(n) ; switch to layout n-place relative to english
-{
-   KeyWait Shift
-   SwitchToEnglishLayout()
-   Loop % abs(n) {
-      Sleep 200
-      if (n > 0) { ; forward
-         Send #{Space}
-      } else { ; backward
-         Send #+{Space}
-      }
-   }
-}
-!+1::SwitchToLayout(0)
-!+2::SwitchToLayout(1)
-!+3::SwitchToLayout(2)
-!+4::SwitchToLayout(-1) ; 4 layouts enabled; -1 switches to the 4th layout
+!+1::SwitchToLayout("00000409") ; en
+!+2::SwitchToLayout("00000404") ; zh_TW
+!+3::SwitchToLayout("00000411") ; ja
+!+4::SwitchToLayout("00000412") ; ko
 
 ; Disable Homepage button (too easy to trigger by accident)
 Browser_Home::return
