@@ -110,6 +110,7 @@ Plug 'lzh9102/execute.vim'
 "Plug 'sotte/presenting.vim'
 "Plug 'gregsexton/gitv'
 "Plug 'benekastah/neomake'
+Plug 'jreybert/vimagit'
 " }}}
 
 " Themes {{{
