@@ -71,8 +71,8 @@ Browser_Home::return
 +#k::WinMaximize A
 +#j::WinRestore A
 
-; Start snipping tool
-PrintScreen::Run SnippingTool.exe
+; Snip & Sketch
+PrintScreen::Send #+s
 
 ; On Logitech K810, pressing F4 without holding Fn sends Ctrl+Win+Backspace.
 ; Map Ctrl+Win+Alt+Backspace => Alt+F4 to enable closing window with Alt+F4 gesture
