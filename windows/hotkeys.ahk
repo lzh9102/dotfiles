@@ -36,6 +36,9 @@ SendMode Input
 >!f::Send ^{Right}
 >!b::Send ^{Left}
 
+; Capslock as Ctrl
+Capslock::Ctrl
+
 ; Send Esc
 ^[::Send {Esc}
 
