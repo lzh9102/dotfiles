@@ -3,10 +3,11 @@ username = Che-Huai Lin <lzh9102@gmail.com>
 editor = vim
 
 [extensions]
-progress =
+#progress =
 mq =
 color =
 record =
+convert =
 
 [progress]
 delay = 1

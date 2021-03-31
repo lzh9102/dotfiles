@@ -3,6 +3,8 @@
 	email = lzh9102@gmail.com
 [merge]
 	tool = vimdiff
+[diff]
+	tool = vimdiff
 [color]
 	ui = auto
 [push]
@@ -11,7 +13,7 @@
 	co = checkout
 	ci = commit
 	cia = commit --amend
-	st = status --short
+	st = status --short --untracked-files=no
 	br = branch
 	di = diff
 	dic = diff --cached

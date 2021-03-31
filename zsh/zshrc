@@ -20,6 +20,7 @@ unsetopt beep
 setopt extended_glob
 unsetopt glob_dots # don't match dot files by *
 unsetopt auto_pushd
+setopt interactive_comments
 
 # enable auto completion
 autoload -U compinit && compinit
@@ -124,3 +125,5 @@ ranger() {
 
 # remove duplicate items in $PATH (in zsh, $PATH is tied to array $path)
 typeset -U path
+
+# vim:fe=utf-8

@@ -22,10 +22,10 @@ call plug#begin('~/.vim/bundle')
 " Languages {{{
 "Plug 'jceb/vim-orgmode'
 "Plug 'vim-scripts/Ada-Bundle'
-"Plug 'klen/python-mode'
+Plug 'python-mode/python-mode'
 "Plug 'helino/vim-json'
 "Plug 'isene/hyperlist.vim'
-Plug 'vim-scripts/DoxyGen-Syntax'
+"Plug 'vim-scripts/DoxyGen-Syntax'
 "Plug 'c9s/perlomni.vim'
 "Plug 'myhere/vim-nodejs-complete'
 "Plug 'sophacles/vim-processing'
@@ -35,10 +35,11 @@ Plug 'vim-scripts/DoxyGen-Syntax'
 "endif
 Plug 'xaizek/vim-inccomplete'
 "Plug 'digitaltoad/vim-jade'
-Plug 'hail2u/vim-css3-syntax'
+"Plug 'hail2u/vim-css3-syntax'
 "Plug 'wavded/vim-stylus'
 "Plug 'vim-scripts/gcov.vim'
 "Plug 'vim-scripts/haskell.vim'
+Plug 'vim-scripts/upf.vim'
 "Plug 'xolox/vim-notes'
 "Plug 'xolox/vim-misc'
 " NOTE: riv uses <C-e> as a prefix, so it will cause delay on scroll down
@@ -52,17 +53,18 @@ Plug 'hail2u/vim-css3-syntax'
 " Editing {{{
 Plug 'Lokaltog/vim-easymotion'
 "Plug 'git@github.com:lzh9102/YouCompleteMe.git'
-Plug 'vim-scripts/AutoComplPop'
+"Plug 'vim-scripts/AutoComplPop'
 Plug 'vim-scripts/surround.vim'
 "Plug 'tpope/vim-surround'
 "Plug 'vim-scripts/closetag.vim'
 Plug 'tpope/vim-ragtag'
 "Plug 'tpope/vim-abolish'
+"Plug 'svermeulen/vim-subversive'
 
 " UltiSnips requires vim compiled with python
 if has('python') || has ('python3')
-	Plug 'SirVer/ultisnips'
-	Plug 'honza/vim-snippets'
+	Plug'SirVer/ultisnips'
+	Plug'honza/vim-snippets'
 	let snippet_plugin = 'ultisnips'
 else " use snipMate instead if vim is not compiled with python
 	Plug 'vim-scripts/snipMate'
@@ -73,7 +75,7 @@ endif
 "Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 "Plug 'kana/vim-fakeclip'
-Plug 'vim-scripts/Align'
+"Plug 'vim-scripts/Align'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'lzh9102/surround-textobj.vim'
 "Plug 'vim-scripts/camelcasemotion'
@@ -83,28 +85,33 @@ Plug 'lzh9102/surround-textobj.vim'
 
 " File and Buffer {{{
 Plug 'vim-scripts/a.vim'
-Plug 'vim-scripts/FencView.vim'
+"Plug 'vim-scripts/FencView.vim'
 Plug 'danro/rename.vim'
-Plug 'lzh9102/vim-indentfinder'
-Plug 'chrisbra/SudoEdit.vim'
+"Plug 'lzh9102/vim-indentfinder'
+"Plug 'chrisbra/SudoEdit.vim'
 "Plug 'vim-voom/VOoM'
-Plug 'mkitt/tabline.vim'
+"Plug 'mkitt/tabline.vim'
+"Plug 'bagrat/vim-buffet'
 "Plug 'vim-scripts/restore_view.vim'
 Plug 'ciaranm/securemodelines'
 "Plug 'airblade/vim-gitgutter'
-Plug 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
 Plug 'Shougo/Unite.vim'
 "Plug 'ldx/vim-indentfinder'
 "Plug 'ciaranm/detectindent'
 "Plug 'vim-scripts/Tabmerge'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'lfv89/vim-interestingwords'
 " }}}
 
 " Extra Utilities {{{
 Plug 'tpope/vim-fugitive', {'tag': 'v2.5'}
-Plug 'vim-scripts/taglist.vim'
+"Plug 'vim-scripts/taglist.vim'
 "Plug 'lzh9102/nerdtree'
-"Plug 'guns/xterm-color-table.vim'
-Plug 'mileszs/ack.vim'
+Plug 'guns/xterm-color-table.vim'
+"Plug 'mileszs/ack.vim'
 Plug 'majutsushi/tagbar'
 Plug 'lzh9102/execute.vim'
 "Plug 'sotte/presenting.vim'
@@ -152,9 +159,21 @@ if v:version >= 703
 endif
 
 " folding
+" WARNING: foldmethod=syntax slows down typing when there are unmatched parens
 "set foldmethod=syntax
 "set foldlevelstart=99
-set foldmethod=marker  " fold by markers
+
+" highlight non-indent tab characters and trailing spaces
+" NOTE: this must be put before "colorscheme" command to take effect
+function! s:MyHighlights() abort
+  highlight TrailingSpace ctermbg=129 guibg=#00ff00 " FIXME: guibg not working
+  match TrailingSpace /[^\t]\zs\t\+/
+  2match TrailingSpace /[ \t]\+$/
+endfunction
+augroup MyColors
+  autocmd!
+  autocmd Colorscheme * call s:MyHighlights()
+augroup end
 
 " colorscheme
 "syntax enable
@@ -192,13 +211,13 @@ set statusline+=\ %{FugitiveStatusLine()} " git branch (when in git repo)
 set statusline+=%r\ %m                    " file status (readonly/modified)
 set statusline+=%=\ %y\ %{IndentationStatusLine()}\ %l,\ %c\ \<\ %P\ \>
 
-" highlight non-indent tab characters and trailing spaces
-highlight ExtraSpace ctermbg=129 guibg=#00ff00 " FIXME: guibg not working
-match ExtraSpace /[^\t]\zs\t\+/
-2match ExtraSpace /[ \t]\+$/
-
 " [vim_listchars] show special characters
 set listchars=tab:»–,eol:¬
+set showbreak=↪
+set list
+
+"set spell
+highlight spellbad ctermbg=52
 
 " disable background color of normal text
 highlight Normal ctermbg=none
@@ -225,10 +244,10 @@ set complete=.,w,b,u,t,i
 " default indentation settings
 set autoindent
 set backspace=2
-set noexpandtab
-set tabstop=3
-set shiftwidth=3
-set softtabstop=3
+set expandtab
+set tabstop=8
+set shiftwidth=2
+set softtabstop=2
 
 " make it possible to recover from accidentally deleting a line in insert mode
 "inoremap <c-u> <c-g>u<c-u>
@@ -236,6 +255,9 @@ set softtabstop=3
 " exclude '=' as valid filename characters to ease completion in shell
 " scripts.
 set isfname-==
+
+" let ':' be word boundary for easier word movement
+set iskeyword-=:
 
 " enable repeat indent/unindent
 vnoremap > >gv
@@ -274,10 +296,10 @@ endfunction
 command! -nargs=* MapAllModes call s:MapAllModes(<f-args>)
 
 " disable arrow keys (and scrolling in terminal emulator) {{{
-MapAllModes <Up> <nop>
-MapAllModes <Down> <nop>
-MapAllModes <Left> <nop>
-MapAllModes <Right> <nop>
+"MapAllModes <Up> <nop>
+"MapAllModes <Down> <nop>
+"MapAllModes <Left> <nop>
+"MapAllModes <Right> <nop>
 " }}}
 
 " disable mouse {{{
@@ -339,7 +361,7 @@ set fileencodings=utf-8,ucs-bom,big5,gbk,latin1
 set fileencoding=utf-8
 
 " when :make fails, jump to the first error in existing tab or create a new one
-set switchbuf=useopen,usetab,newtab
+set switchbuf=useopen,usetab
 
 " incremental search
 set incsearch
@@ -356,11 +378,44 @@ endif
 set wildignore+=*.o,*.pyc
 
 " close and delete file
-command! CloseAndDelete call delete(expand('%')) | bdelete!
+command! DeleteAndClose call delete(expand('%')) | bdelete!
 
 " open vimrc file
 command! Config edit $MYVIMRC
 
+" [asyncrun] automatically open quickfix window at 8 line height
+let g:asyncrun_open = 8
+
+function! RunMypyCheck()
+  exec 'AsyncRun mypy --check-untyped-defs %'
+endfunction
+command! Mypy call RunMypyCheck()
+
+function! RunPyLintCheck()
+  exec 'AsyncRun pylint-check-errors %'
+endfunction
+command! Pylint call RunPyLintCheck()
+
+function! ReloadAllFiles()
+  let l:tabnr = tabpagenr()
+  exec 'tabdo windo e! | normal ' . l:tabnr . 'gt'
+endfunction
+command! ReloadAll call ReloadAllFiles()
+
+function! RunScons()
+  exec 'AsyncRun scons'
+endfunction
+command! Scons call RunScons()
+
+" vim-airline
+let g:airline_extensions = ['tabline', 'branch']
+let g:airline_theme = 'luna'
+let g:airline#extensions#tabline#buffer_min_count = 2   " don't show tabline with single buffer
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_section_a = ''
+let g:airline_section_c = '%F [%{&fileencoding},%{&fileformat}]%r%m'
+let g:airline_section_x = ''
+let g:airline_section_y = '%y%{IndentationStatusLine()}'
 "    File & Buffer End }}}
 
 "    Shortcut {{{
@@ -373,9 +428,14 @@ let maplocalleader = '-'
 let mapleader = '\'
 
 " switching tabs
-nmap <C-n> gt
-nmap <C-p> gT
-nmap <C-c><C-n> :tabnew 
+"nmap <silent> <C-n> gt
+"nmap <silent> <C-p> gT
+"nmap <C-c><C-n> :tabnew 
+nmap <silent> <C-n> :bn<CR>
+nmap <silent> <C-p> :bp<CR>
+nmap <C-c><C-n> :edit 
+" exclude quickfix window in :bnext and :bprev
+au FileType qf set nobuflisted
 
 " toggle hlsearch
 " NOTE: neovim treats <C-h> as backspace, so map <C-c><BS> as well
@@ -413,7 +473,18 @@ nmap <silent> <C-c><C-x> :Execute<CR>
 "command WriteAsRoot call WriteAsRoot()
 
 " refresh syntax highlighting
-nmap <silent> <C-l> :syntax sync fromstart<CR>
+nmap <silent> <C-l> :syntax sync fromstart<CR>:redraw!<CR>
+
+" set the indentation to n spaces
+function! s:SetIndentSpaces(n)
+	set expandtab
+	exec 'set shiftwidth=' . a:n
+endfunction
+command! -nargs=* SetIndentSpaces call s:SetIndentSpaces(<f-args>)
+
+command! SetExec call system('chmod +x ' . shellescape(expand('%:p')))
+
+command! StripTrailingSpace call execute(':%s/\s\+$//g')
 
 "    Shortcut End }}}
 
@@ -516,10 +587,21 @@ let g:voom_ft_modes = {
 let g:voom_tab_key = "<nop>"
 " }}}
 
-" Ack.vim
+" Ack
 " use ag instead if it is available
 if executable('ag')
-	let g:ackprg = 'ag --nogroup --nocolor --column'
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+elseif executable('ack')
+  let g:ackprg = 'ack --nogroup --nocolor --column'
+end
+function! s:Ack(qargs)
+  if !exists('g:ackprg')
+    return
+  end
+  exec "AsyncRun " . g:ackprg . " " . a:qargs
+endfunction
+if exists('g:ackprg')
+  command! -nargs=* Ack call s:Ack(<q-args>)
 end
 
 " ragtag: close-tag
@@ -534,24 +616,54 @@ let g:rainbow_active = 0
 " Unite.vim {{{
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
-	nmap <buffer> <C-c> <Plug>(unite_exit)
-	nmap <buffer> <ESC> <Plug>(unite_exit)
+  nmap <buffer> <C-c> <Plug>(unite_exit)
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+  if exists('*unite#custom#profile')
+    call unite#custom#profile('default', 'context', {
+          \ 'start_insert': 1,
+          \ 'smartcase': 1,
+          \ 'direction': 'dynamicbottom',
+          \ })
+  endif
 endfunction
 
-if exists('*unite#custom#profile')
-call unite#custom#profile('default', 'context', {
-			\ 'start_insert': 1,
-			\ 'smartcase': 1,
-			\ 'direction': 'dynamicbottom',
-			\ })
-endif
-
-nnoremap <silent> <C-c><C-f> :Unite file<CR>
-nnoremap <silent> <C-c><C-p> :UniteWithProjectDir file_rec<CR>
-nnoremap <silent> <C-c><C-b> :Unite tab<CR>
+nnoremap <silent> <C-c><C-f> :UniteWithBufferDir file<CR>
+nnoremap <silent> <C-c><C-p> :UniteWithCurrentDir file_rec<CR>
+nnoremap <silent> <C-c><C-b> :Unite buffer<CR>
 " }}}
 
+let g:tagbar_ctags_bin = $HOME . '/.bin/ctags-wrapper'
+
+let g:signify_vcs_list = ['perforce', 'git']
+let g:signify_vcs_cmds_diffmode = {'perforce': 'p4 print %f', 'git': 'git diff %f', 'hg': 'hg diff %f'}
+
+" vim-buffet
+"let g:buffet_always_show_tabline = 0
+"let g:buffet_show_index = 1
+"
+"nmap <leader>1 <Plug>BuffetSwitch(1)
+"nmap <leader>2 <Plug>BuffetSwitch(2)
+"nmap <leader>3 <Plug>BuffetSwitch(3)
+"nmap <leader>4 <Plug>BuffetSwitch(4)
+"nmap <leader>5 <Plug>BuffetSwitch(5)
+"nmap <leader>6 <Plug>BuffetSwitch(6)
+"nmap <leader>7 <Plug>BuffetSwitch(7)
+"nmap <leader>8 <Plug>BuffetSwitch(8)
+"nmap <leader>9 <Plug>BuffetSwitch(9)
+"nmap <leader>0 <Plug>BuffetSwitch(10)
+"nnoremap <silent> <C-c><C-b> :Unite buffer<CR>
+"
+"function! g:BuffetSetCustomColors()
+"  hi! BuffetCurrentBuffer cterm=NONE ctermfg=255 ctermbg=0   guifg=#ffffff guibg=#000000
+"  hi! BuffetActiveBuffer  cterm=NONE ctermfg=250 ctermbg=238 guifg=#cccccc guibg=#444444
+"  hi! BuffetBuffer        cterm=NONE ctermfg=250 ctermbg=238 guifg=#cccccc guibg=#444444
+"  hi! BuffetTab           cterm=NONE ctermfg=250 ctermbg=238 guifg=#cccccc guibg=#444444
+"endfunction
+
 " Plugin Settings End }}}
+
+" Synopsys settings
+source ~/.vim/synopsys.vim
 
 " Post-settings {{{
 
@@ -559,5 +671,10 @@ nnoremap <silent> <C-c><C-b> :Unite tab<CR>
 if has('nvim')
 	set runtimepath+=~/.vim/after
 endif
+
+function! g:BeautifyXML()
+  exec s/<[^>]*>/\r&\r/g<CR>:g/^$/d<CR>gg=G
+endfunction
+nnoremap ,= :s/<[^>]*>/\r&\r/g<CR>:g/^$/d<CR>gg=G
 
 " }}}
