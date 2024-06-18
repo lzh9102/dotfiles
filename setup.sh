@@ -25,6 +25,7 @@ FILES="""
 * .octaverc
 * .cgdb/cgdbrc cgdbrc
 * .config/feh/ feh/
+* .config/fish/config.fish fish/config.fish
 # system-specific files
 GNU/Linux .zsh/zshrc.system zsh/zshrc.gnulinux
 FreeBSD   .zsh/zshrc.system zsh/zshrc.freebsd
