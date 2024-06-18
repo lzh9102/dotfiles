@@ -1,4 +1,8 @@
-set -g fish_greeting  # Disable welcome prompt
+# Disable welcome prompt
+set -g fish_greeting
+
+# Keep path components in prompt
+set -g fish_prompt_pwd_full_dirs 10
 
 function fish_prompt
 	if test $status -eq 0
@@ -18,6 +22,6 @@ function fish_prompt
 	echo -n (hostname -s)
 	set_color $prompt_color
 	echo -n ":"
-	echo (pwd)
+	echo (prompt_pwd)
 	echo "└> "
 end
