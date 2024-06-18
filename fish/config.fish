@@ -12,7 +12,7 @@ function fish_prompt
 	end
 
 	set_color --bold
-	set_color $prompt_color
+	set_color green
 	echo -n "🐟"
 	set_color cyan
 	echo -n (whoami)
@@ -20,8 +20,9 @@ function fish_prompt
 	echo -n "@"
 	set_color magenta
 	echo -n (hostname -s)
-	set_color $prompt_color
+	set_color green
 	echo -n ":"
 	echo (prompt_pwd)
+  set_color $prompt_color
 	echo "└> "
 end
