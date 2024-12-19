@@ -1,0 +1,18 @@
+# Map capslock to ctrl
+[main]
+capslock = layer(control)
+
+# Navigation Keys (Alt+Shift+<Key>)
+[alt+shift]
+h = left
+j = down
+k = up
+l = right
+f = C-right
+b = C-left
+a = home
+e = end
+n = pagedown
+p = pageup
+d = delete
+w = C-backspace
