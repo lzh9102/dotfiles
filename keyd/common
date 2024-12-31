@@ -2,6 +2,9 @@
 [main]
 capslock = layer(control)
 
+# Distinguish between left and right control
+rightcontrol = rightcontrol
+
 # Navigation Keys (Alt+Shift+<Key>)
 [alt+shift]
 h = left
